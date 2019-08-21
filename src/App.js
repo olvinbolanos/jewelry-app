@@ -7,7 +7,7 @@ import Register from './Register'
 import Header from './Header'
 import './App.css'
 
-const my404 = () => {
+const My404 = () => {
   return (
     <div>
       You are lost Buddy
@@ -82,13 +82,11 @@ class App extends Component {
           <Route exact path='/' render={(props) => <Login {...props} logIn={this.logIn} />} />
           <Route exact path='/register' render={(props) => <Register {...props} register={this.register} /> } />
           <Route exact path='/profile' render={(props) => <Profile {...props} userInfo={this.state} /> } />
-           
+          <Route component={My404} />
         </Switch>
       </main>
     )
   }
-
-
 }
 
 export default App;
