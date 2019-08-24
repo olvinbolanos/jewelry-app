@@ -11,33 +11,18 @@ class Register extends Component {
       username: '',
       password: '',
       email: '',
-      description: '',
-      owner: '',
-      price: '',
-      image: {}
     }
   }
   handleChange = (e) => {
-    if(e.target.name !== 'image'){
-      this.setState({[e.target.name]: e.target.value});
-    } else {
-      // file upload
-      console.log(e.target.files[0])
-      this.setState({image: e.target.files[0]});
-    } 
+    this.setState({[e.target.name]: e.target.value});
   }
   handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = new FormData();
-    data.append('file', this.state.image);
-    data.append('username', this.state.username);
-    data.append('password', this.state.password);
-    data.append('email', this.state.email);
-    data.append('price', this.state.price);
-    data.append('owner', this.state.owner);
-    data.append('description', this.state.description);
-    
+    data.append('username', this.state.image);
+    data.append('email', this.state.price);
+    data.append('password', this.state.owner);    
 
     console.log(data.entries(), ' this is data')
     for (let pair of data.entries()){
@@ -70,7 +55,6 @@ class Register extends Component {
               <Form.Input fluid icon='mail' iconPosition='left' placeholder='email' type='text' name='email' onChange={this.handleChange}/>
               password:
               <Form.Input fluid icon='lock' iconPosition='left' type='password' name='password' onChange={this.handleChange}/>
-              
               <Message>
                 Already a member? <Link to='/Login'>Login</Link>
               </Message>
