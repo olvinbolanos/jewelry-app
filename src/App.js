@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import ClientContainer from './ClientContainer'
 import {Route, Switch } from 'react-router-dom'
+import Header from './Header'
 import Login from './Login'
 import Profile from './Profile'
 import Register from './Register'
-import Header from './Header'
+import ShippingForm from './ShippingForm'
+import ClientContainer from './ClientContainer'
 import './App.css'
 
 const My404 = () => {
@@ -19,6 +20,7 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
+      id: '',
       username: '',
       email: '',
       image: '',
@@ -39,12 +41,16 @@ class App extends Component {
 
       const parsedResponse = await loginResponse.json()
 
-      this.setState(() => {
-        return {
-          ...parsedResponse.data,
-          loading: false
-        }
-      })
+      if (parsedResponse.status.code === 200) {
+        this.setState(() => {
+          return {
+            ...parsedResponse.data,
+            loading: false
+          }
+        })
+      } else {
+        console.log(parsedResponse.status.message)
+      }
 
       return parsedResponse
     } catch (err) {
@@ -77,13 +83,25 @@ class App extends Component {
   }
   render() {
     return (
-      <main>
-        <Switch>
-          <Route exact path='/' render={(props) => <Login {...props} logIn={this.logIn} />} />
-          <Route exact path='/register' render={(props) => <Register {...props} register={this.register} /> } />
-          <Route exact path='/profile' render={(props) => <Profile {...props} userInfo={this.state} /> } />
-          <Route component={My404} />
-        </Switch>
+      <main> 
+        {
+          this.state.loading ?
+          <Switch>
+            <Route exact path='/' render={(props) => <Login {...props} logIn={this.logIn} />} />
+            <Route path='/register' render={(props) => <Register {...props} register={this.register} /> } />
+          </Switch> :
+          <main>
+            <Header />
+            <Switch>
+              <Route path='/profile' render={(props) => <Profile {...props} userInfo={this.state} /> } />
+              <Route path='/shippingForm' render={(props) => <ShippingForm {...props} userInfo={this.state} /> } />
+              <Route path='/clientContainer' render={(props) => <ClientContainer {...props} userInfo={this.state} /> } /> 
+              <Route path='/logout' />
+              <Route component={My404} />
+            </Switch>
+          </main>
+        }
+        
       </main>
     )
   }

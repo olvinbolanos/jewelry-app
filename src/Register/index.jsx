@@ -11,6 +11,9 @@ class Register extends Component {
       username: '',
       password: '',
       email: '',
+      title: '',
+      owner: '',
+      price: '',
       image: {}
     }
   }
@@ -31,6 +34,7 @@ class Register extends Component {
     data.append('username', this.state.username);
     data.append('password', this.state.password);
     data.append('email', this.state.email);
+    
 
     console.log(data.entries(), ' this is data')
     for (let pair of data.entries()){
@@ -63,7 +67,7 @@ class Register extends Component {
               <Form.Input fluid icon='mail' iconPosition='left' placeholder='email' type='text' name='email' onChange={this.handleChange}/>
               password:
               <Form.Input fluid icon='lock' iconPosition='left' type='password' name='password' onChange={this.handleChange}/>
-              image:
+              Image:
               <Form.Input fluid icon='image' iconPosition='left' type="file" name='image' onChange={this.handleChange}/>
               <Button fluid size='large' type='sumbit'>Register</Button>
               <Message>
@@ -78,3 +82,12 @@ class Register extends Component {
 }
 
 export default withRouter(Register);
+
+// Bargain Price:
+//               <Form.Input fluid icon='dollar sign' iconPosition='left' placeholder='price' type='text' name='price' onChange={this.handleChange}/>
+//               Owner:
+//               <Form.Input fluid icon='user circle' iconPosition='left' placeholder='owner' type='text' name='owner' onChange={this.handleChange}/>
+//               <div className="field">
+//                 <label>Description of Item</label>
+//                 <textarea name="title" onChange={this.handleChange}></textarea>
+//               </div>
