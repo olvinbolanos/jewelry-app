@@ -6,6 +6,7 @@ import Profile from './Profile'
 import Register from './Register'
 import ShippingForm from './ShippingForm'
 import ClientContainer from './ClientContainer'
+import Jewelry from './Jewelry'
 import './App.css'
 
 const My404 = () => {
@@ -23,7 +24,6 @@ class App extends Component {
       id: '',
       username: '',
       email: '',
-      image: '',
       loading: true
     }
   }
@@ -81,6 +81,30 @@ class App extends Component {
       console.log(err)
     }
   }
+  jewelry = async (data) => {
+    try {
+      const registerResponse = await fetch('http://localhost:8000/api/v1/', {
+        method: 'POST',
+        credentials: 'include',
+        body: data,
+        headers: {
+          'enctype': 'multipart/form-data'
+        }
+      })
+
+      const parsedResponse = await registerResponse.json()
+      console.log(parsedResponse)
+
+      this.setState({
+        ...parsedResponse.data,
+        loading: false
+      })
+
+      return parsedResponse
+    } catch (err) {
+      console.log(err)
+    }
+  }
   render() {
     return (
       <main> 
@@ -96,6 +120,7 @@ class App extends Component {
               <Route path='/profile' render={(props) => <Profile {...props} userInfo={this.state} /> } />
               <Route path='/shippingForm' render={(props) => <ShippingForm {...props} userInfo={this.state} /> } />
               <Route path='/clientContainer' render={(props) => <ClientContainer {...props} userInfo={this.state} /> } /> 
+              <Route path='/jewelry' render={(props) => <Jewelry {...props}  jewelry={this.jewelry} userInfo={this.state}/> } />
               <Route path='/logout' />
               <Route component={My404} />
             </Switch>

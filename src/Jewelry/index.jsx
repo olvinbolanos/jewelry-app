@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-
+import { Link, withRouter } from 'react-router-dom'
+import { Grid, Button, Form, Header, Image, Message, Card, Icon, Segment} from 'semantic-ui-react'
 
 
 class Jewelry extends Component {
-
     constructor() {
         super();
         this.state = {
@@ -12,7 +12,6 @@ class Jewelry extends Component {
             description: '',
             image: {}
         }
-        
     }
 
     handleChange = (e) => {
@@ -28,19 +27,22 @@ class Jewelry extends Component {
         e.preventDefault();
     
         const data = new FormData();
-        data.append('username', this.state.username);
-        data.append('password', this.state.password);
-        data.append('email', this.state.email);
+       
+        data.append('owner', this.state.owner)
+        data.append('price', this.state.price);
+        data.append('description', this.state.description);
+        data.append('file', this.state.image);
+
         
         console.log(data.entries(), ' this is data')
         for (let pair of data.entries()){
           console.log(pair[0]  ,', ', pair[1])
         }
     
-        const registerCall = this.props.register(data);
+        const registerCall = this.props.jewelry(data);
     
         registerCall.then((data) => {
-          console.log(data)
+          console.log(data, '<-- this is my data response in jewelry')
             if(data.status.message === "Success"){
               this.props.history.push('/profile')
             } else {
@@ -51,11 +53,12 @@ class Jewelry extends Component {
 
 
     render(){
+        console.log(this.state, this.props.userInfo, '<--- in jewelry < props.')
       return (
         <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
           <Grid.Column style={{maxWidth: 450}}>
             <Header as='h2' textAlign='center'>
-              Register
+              Post up your jewelry on our site and get your money's worth
             </Header>
             <Form onSubmit={this.handleSubmit}>
                 <Segment stacked>

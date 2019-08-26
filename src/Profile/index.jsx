@@ -23,7 +23,7 @@ class Profile extends Component {
               {
                 this.props.userInfo.loading ?
                 'Loading.....' :
-  
+                
                 <Card
                   image={'http://localhost:8000/profile_pics/' + this.props.userInfo.image}
                   header={this.props.username}
@@ -38,6 +38,7 @@ class Profile extends Component {
                 {this.props.userInfo.username}'s List Of Jewelry
               </Header>
             </Grid.Column>
+            <Button>Add to Shopping Cart<i class="shopping cart icon"></i></Button>
           </Grid.Row>
         </Grid>
         )

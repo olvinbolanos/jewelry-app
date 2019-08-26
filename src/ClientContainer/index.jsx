@@ -61,7 +61,7 @@ class ClientContainer extends Component {
                             <span  className='author'>  Date: {user.created_at} </span>
                             </div>
                                 <div className="image">
-                                    <img src={"http://localhost:8000/profile_pics/" + user.user.image} />
+                                    <img src={"http://localhost:8000/profile_pics/" + user.image} />
                                 </div>  
                             <div>
                                 <i>${user.price}</i>
