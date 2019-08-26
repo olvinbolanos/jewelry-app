@@ -35,7 +35,7 @@ class Register extends Component {
     registerCall.then((data) => {
       console.log(data)
         if(data.status.message === "Success"){
-          this.props.history.push('/profile') //go post a jewelry online, go to jewelry index
+          this.props.history.push('/jewelry') //go post a jewelry online, go to jewelry index
         } else {
           console.log(data, ' this should have an error message? How could you display that on the screen')
         }
@@ -59,7 +59,7 @@ class Register extends Component {
               <Form.Input fluid icon='lock' iconPosition='left' type='password' name='password' onChange={this.handleChange}/>
               <Button fluid size='large' type='sumbit'>Register</Button>
               <Message>
-                Already a member? <Link to='/Login'>Login</Link>
+                Already a member? <Link to='/'>Login</Link>
               </Message>
             </Segment>
           </Form>

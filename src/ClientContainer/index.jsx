@@ -38,13 +38,61 @@ class ClientContainer extends Component {
         return (
             <div>
                 <h1>Welcome to the Home Page</h1>
-                {
-                this.props.userInfo.loading ?
-                'Loading.....' :
-                
+                { 
                     users.map((user, i) => { 
-                        return (
-                        <div key={i} className='item'>
+                      return (
+                        <div key={i}>
+                            <div className="ui special cards">
+                            <div className="card">
+                                <div className="blurring dimmable image">
+                                <div className="ui dimmer">
+                                    <div className="content">
+                                    <div className="center">
+                                        <div className="ui button visible" style={{visibility: "visible !important", display: "flex !important"}}>Add to Shopping Cart<i className="shopping cart icon"></i></div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <img src={'http://localhost:8000/profile_pics/' + user.image} alt={user.user.username} />
+                                </div>
+                                <div className="content">
+                                <a className="header">{user.user.username}</a>
+                                <div className="meta">
+                                    <span className="date">Posted on {user.created_at}</span>
+                                </div>
+                                </div>
+                                <div className="extra content">
+                                <a>
+                                    <i className="users icon"></i>
+                                    {user.description}
+                                </a>
+                                </div>
+                                <div className="extra content">
+                                <a>
+                                Add to Shopping Cart
+                                <i className="shopping cart icon"></i>
+                                </a>
+                                <div className="extra content">
+                                    <a>
+                                        <i>${user.price}</i>
+                                    </a>
+                                </div>
+                                </div>
+                            </div>
+                            </div> 
+                        </div>
+                        )
+                    })
+                }
+            </div>     
+        )
+    }
+}
+
+export default ClientContainer;
+
+
+
+{/* <div key={i} className='item'>
                             <div className='middle aligned content'>
                             <div className='header'>
                             <i className='large caret up icon' />
@@ -67,14 +115,4 @@ class ClientContainer extends Component {
                                 <i>${user.price}</i>
                             </div>
                             </div>
-                        </div>
-                        )
-                    })
-                
-            }
-            </div>     
-        )
-    }
-}
-
-export default ClientContainer;
+                        </div> */}

@@ -51,9 +51,9 @@ class Jewelry extends Component {
         })
       }
 
-
+      
     render(){
-        console.log(this.state, this.props.userInfo, '<--- in jewelry < props.')
+        // console.log(this.state, this.props.userInfo, '<--- in jewelry < props.')
       return (
         <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
           <Grid.Column style={{maxWidth: 450}}>
