@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Route, Switch } from 'react-router-dom'
 import Header from './Header'
+import Banner from './Banner'
 import Login from './Login'
 import Profile from './Profile'
 import Register from './Register'
@@ -28,6 +29,10 @@ class App extends Component {
     }
   }
 
+  async componentDidMount() {
+    this.jewelry()
+  }
+
   logIn = async (loginInfo) => {
     try {
       const loginResponse = await fetch(`http://localhost:8000/user/login`, {
@@ -42,7 +47,6 @@ class App extends Component {
       const parsedResponse = await loginResponse.json()
       
       if (parsedResponse.status.code === 200) {
-        this.setSession(parsedResponse)
         this.setState(() => {
           return {
             ...parsedResponse.data,
@@ -67,6 +71,7 @@ class App extends Component {
       return userParsed;
     }
   }
+
   register = async (data) => {
     try {
       const registerResponse = await fetch(`http://localhost:8000/user/register`, {
@@ -90,12 +95,12 @@ class App extends Component {
       console.log(err)
     }
   }
-  jewelry = async (data) => {
+  jewelry = async (info) => {
     try {
       const registerResponse = await fetch('http://localhost:8000/api/v1/', {
         method: 'POST',
         credentials: 'include',
-        body: data,
+        body: info,
         headers: {
           'enctype': 'multipart/form-data'
         }
@@ -114,6 +119,7 @@ class App extends Component {
       console.log(err)
     }
   }
+
   render() {
     return (
       <main> 
@@ -126,6 +132,8 @@ class App extends Component {
           <main>
             <Header />
             <Switch>
+              <Route exact path='/' render={(props) => <Login {...props} logIn={this.logIn} />} />
+              <Route path='/register' render={(props) => <Register {...props} register={this.register} /> } />
               <Route path='/profile' render={(props) => <Profile {...props} userInfo={this.state} /> } />
               <Route path='/shippingForm' render={(props) => <ShippingForm {...props} userInfo={this.state} /> } />
               <Route path='/clientContainer' render={(props) => <ClientContainer {...props} userInfo={this.state} /> } /> 

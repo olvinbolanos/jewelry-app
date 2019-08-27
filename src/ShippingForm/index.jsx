@@ -111,7 +111,7 @@ class ShippingForm extends Component {
                     <div className="ui fluid search selection dropdown">
                         <input type="hidden" name="country" />
                         <i className="dropdown icon"></i>
-                        <div className="default text">Select Country</div>
+                        <div className="text">Select Country</div>
                         <div className="menu">
                     <div className="item" data-value="af"><i className="af flag"></i>Afghanistan</div>
                     <div className="item" data-value="ax"><i className="ax flag"></i>Aland Islands</div>
@@ -365,7 +365,7 @@ class ShippingForm extends Component {
                     <label>Card Type</label>
                     <div className="ui selection dropdown">
                     <input type="hidden" name="card[type]" />
-                    <div className="default text">Type</div>
+                    <div className="text">Type</div>
                     <i className="dropdown icon"></i>
                     <div className="menu">
                         <div className="item" data-value="visa">

@@ -8,10 +8,10 @@ const Profilees = (props) => {
         <Header as='h2' textAlign='center'>
           {props.userInfo.username}'s List Of Jewelry
         </Header>
+        <div className="App-flex-cards-2">
         {
           props.userInfo.loading ?
           'Loading.....' :
-          
           props.clientele.map((client, i) => {
             return(
             <div key={i}>
@@ -39,17 +39,24 @@ const Profilees = (props) => {
                       {client.description}
                     </a>
                   </div>
-                </div>
-              </div> 
+                  <div className="extra content">
+                    <a>
+                      <i className="dollar icon"></i>
+                      {client.price}
+                    </a>
+                  </div>
                   <div className="extra content" style={{display: "flex !important"}}>
                     <button onClick={props.showModal.bind(null, client)} style={{cursor: "pointer !important"}}>Edit Jewelry</button>
                   
                     <button onClick={props.deleteClient.bind(null, client.id)} style={{cursor: "pointer !important"}}>Delete Jewelry</button>
                 </div>
+                </div>
+              </div> 
             </div> 
              ) 
            })  
-        }
+          }
+          </div>
     </div>
   )
 } 

@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -23,11 +25,29 @@
   color: #61dafb;
 }
 
+
 .ui.form {
   position: relative;
   display: block !important;
   margin: 0 auto !important;
-  max-width: 100%;
+  max-width: 80%;
+}
+
+ /*===== Cards ======*/ 
+.App-flex-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.App-flex-cards-2 {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.special .card {
+  margin: 5px;
 }
 
 @keyframes App-logo-spin {
@@ -38,3 +58,92 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* =======================================
+2. Section: Intro for the banner dude
+======================================== */
+
+.default {
+	background:#010101;
+	border-bottom:1px solid #222;
+}
+
+.fixed {
+	position: fixed;
+	background:#2a2a2a;
+	border:none;
+	top:0;
+	left: 0;
+	width: 100%;
+	box-shadow: 0 0 40px #222;
+	-webkit-box-shadow: 0 0 40px #222;
+	-moz-box-shadow: 0 0 40px #222;
+}
+
+section#intro {
+	background: #000  url(https://objects.chopard.com/media/catalog/category/Jewellery_M_pf.jpg) 50% 0 no-repeat; 
+	position:relative;
+	width:100%;
+	height:auto;
+	margin:0;
+	padding:390px 0 120px;
+}
+
+@media (min-width: 1024px) {
+	section#intro {
+		background-attachment: fixed;
+	}
+}
+
+section#intro.inner {
+	padding:140px 0 30px;
+}
+
+section#intro.inner h2 strong  {
+	color:#fff;
+}
+section#intro.inner h2  {
+	font-size:32px;
+}
+
+
+section#intro  {
+	text-align:center;
+}
+
+section#intro i  {
+	margin-left:0;
+	text-align:center;
+}
+
+section#intro h1  {
+	color:#fff;
+	font-size:64px;
+	font-weight:700;
+}
+section#intro h2  {
+	color:#ddd;
+	font-size:24px;
+}
+
+/* === slogan === */
+.slogan i {
+	color:#fff;
+}
+
+
+section#intro .inner-heading h2 {
+	margin-bottom:-20px;
+}
+
+section#intro h4.subtitle  {
+	font-family: Arial, Tahoma, Verdana, Sans-serif;
+	text-transform:none;
+	color:#f8f8f8;
+}
+
+section#intro p  {
+	color:#f8f8f8;
+}
+

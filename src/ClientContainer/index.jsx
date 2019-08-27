@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Grid, Button, Form, Image, Header, Message, Card, Icon} from 'semantic-ui-react'
 import { parse } from '@babel/core';
+import Banner from '../Banner'
+import '../App.css'
 
 
 class ClientContainer extends Component {
@@ -28,8 +30,6 @@ class ClientContainer extends Component {
             this.setState({
                 users : parsedResponse.data
             })
-            
-           
         }
         catch (err) {
           console.log(err)
@@ -40,10 +40,12 @@ class ClientContainer extends Component {
         const { users } = this.state
         return (
             <div>
-                <h1>Welcome to the Home Page</h1>
+                <Banner />
+                <div className="App-flex-cards">
                 { 
                     users.map((user, i) => { 
                       return (
+                        
                         <div key={i}>
                             <div className="ui special cards">
                             <div className="card">
@@ -82,11 +84,12 @@ class ClientContainer extends Component {
                                 </div>
                             </div>
                             </div> 
-                        </div>
+                          </div>
                         )
                     })
                 }
-            </div>     
+                </div>
+            </div>
         )
     }
 }
