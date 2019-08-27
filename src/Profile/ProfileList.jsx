@@ -25,7 +25,7 @@ const Profilees = (props) => {
                         </div>
                       </div>
                     </div>
-                    <img src={'http://localhost:8000/profile_pics/' + client.image} alt={props.userInfo.username} />
+                    <img src={`http://localhost:8000/profile_pics/${client.image}`} alt={props.userInfo.username} />
                   </div>
                   <div className="content">
                     <a className="header">{props.userInfo.username}</a>

@@ -31,10 +31,13 @@ class Profile extends Component {
     getClient = async (data) => {
       console.log("hitting!!!!!")
       try {
-        const clientResponse = await fetch('http://localhost:8000/user/' + this.props.userInfo.id + '/clients', {
+        const clientResponse = await fetch(`http://localhost:8000/user/${this.props.userInfo.id}/clients`, {
           method: 'GET'
         })
         const parsedResponse = await clientResponse.json()
+        // localStorage.Item('user', JSON.stringify(parsedResponse))
+
+
         console.log(parsedResponse.data)
           this.setState({
           clients : parsedResponse.data
@@ -97,7 +100,7 @@ class Profile extends Component {
 
     deleteClient = async (id) => {
       try{
-        const deleteClient = await fetch('http://localhost:8000/api/v1/' + id, {
+        const deleteClient = await fetch(`http://localhost:8000/api/v1/${id}`, {
           method: "DELETE",
           credentials: 'include'
         }) 

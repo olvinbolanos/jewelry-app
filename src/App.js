@@ -30,7 +30,7 @@ class App extends Component {
 
   logIn = async (loginInfo) => {
     try {
-      const loginResponse = await fetch('http://localhost:8000/user/login', {
+      const loginResponse = await fetch(`http://localhost:8000/user/login`, {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify(loginInfo),
@@ -40,6 +40,7 @@ class App extends Component {
       })
 
       const parsedResponse = await loginResponse.json()
+      
 
       if (parsedResponse.status.code === 200) {
         this.setState(() => {
@@ -57,9 +58,13 @@ class App extends Component {
       console.log(err)
     }
   }
+
+  setSession(userControl) {
+    localStorage.setItem('user', )
+  }
   register = async (data) => {
     try {
-      const registerResponse = await fetch('http://localhost:8000/user/register', {
+      const registerResponse = await fetch(`http://localhost:8000/user/register`, {
         method: 'POST',
         credentials: 'include',
         body: data,
@@ -69,7 +74,6 @@ class App extends Component {
       })
 
       const parsedResponse = await registerResponse.json()
-      console.log(parsedResponse)
 
       this.setState({
         ...parsedResponse.data,
@@ -83,7 +87,7 @@ class App extends Component {
   }
   jewelry = async (data) => {
     try {
-      const registerResponse = await fetch('http://localhost:8000/api/v1/', {
+      const registerResponse = await fetch(`http://localhost:8000/api/v1/`, {
         method: 'POST',
         credentials: 'include',
         body: data,
