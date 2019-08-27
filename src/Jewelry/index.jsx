@@ -53,7 +53,7 @@ class Jewelry extends Component {
 
       
     render(){
-        // console.log(this.state, this.props.userInfo, '<--- in jewelry < props.')
+        console.log(this.state, this.props.userInfo, '<--- in jewelry < props.')
       return (
         <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
           <Grid.Column style={{maxWidth: 450}}>
@@ -73,9 +73,7 @@ class Jewelry extends Component {
                 Image:
                 <Form.Input fluid icon='image' iconPosition='left' type="file" name='image' onChange={this.handleChange}/>
                 <Button fluid size='large' type='sumbit'>Register</Button>
-                <Message>
-                  Already a member? <Link to='/Login'>Login</Link>
-                </Message>
+                
               </Segment>
             </Form>
           </Grid.Column>

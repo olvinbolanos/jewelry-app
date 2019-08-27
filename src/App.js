@@ -41,8 +41,8 @@ class App extends Component {
 
       const parsedResponse = await loginResponse.json()
       
-
       if (parsedResponse.status.code === 200) {
+        this.setSession(parsedResponse)
         this.setState(() => {
           return {
             ...parsedResponse.data,
@@ -60,7 +60,12 @@ class App extends Component {
   }
 
   setSession(userControl) {
-    localStorage.setItem('user', )
+    if (localStorage.getItem('user') === undefined) {
+      localStorage.setItem('user', JSON.stringify(userControl.data));
+      let retrievedData = localStorage.getItem('user');
+      let userParsed = JSON.parse(retrievedData);
+      return userParsed;
+    }
   }
   register = async (data) => {
     try {

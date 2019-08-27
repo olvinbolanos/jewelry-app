@@ -35,8 +35,6 @@ class Profile extends Component {
           method: 'GET'
         })
         const parsedResponse = await clientResponse.json()
-        // localStorage.Item('user', JSON.stringify(parsedResponse))
-
 
         console.log(parsedResponse.data)
           this.setState({
