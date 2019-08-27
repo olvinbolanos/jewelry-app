@@ -25,7 +25,6 @@ class ClientContainer extends Component {
             const clientResponse = await fetch('http://localhost:8000/api/v1/', {
                 method: 'GET'
             })
-
             const parsedResponse = await clientResponse.json()
             this.setState({
                 users : parsedResponse.data
@@ -45,7 +44,6 @@ class ClientContainer extends Component {
                 { 
                     users.map((user, i) => { 
                       return (
-                        
                         <div key={i}>
                             <div className="ui special cards">
                             <div className="card">
@@ -60,7 +58,7 @@ class ClientContainer extends Component {
                                 <img src={`http://localhost:8000/profile_pics/${user.image}`} alt={user.user.username} />
                                 </div>
                                 <div className="content">
-                                <a className="header">{user.user.username}</a>
+                                <a className="header">{user.username}</a>
                                 <div className="meta">
                                     <span className="date">Posted on {user.created_at}</span>
                                 </div>
