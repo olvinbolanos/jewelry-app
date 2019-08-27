@@ -92,7 +92,7 @@ class App extends Component {
   }
   jewelry = async (data) => {
     try {
-      const registerResponse = await fetch(`http://localhost:8000/api/v1/`, {
+      const registerResponse = await fetch('http://localhost:8000/api/v1/', {
         method: 'POST',
         credentials: 'include',
         body: data,
