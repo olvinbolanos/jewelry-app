@@ -29,10 +29,6 @@ class App extends Component {
     }
   }
 
-  async componentDidMount() {
-    this.jewelry()
-  }
-
   logIn = async (loginInfo) => {
     try {
       const loginResponse = await fetch(`http://localhost:8000/user/login`, {
@@ -107,11 +103,8 @@ class App extends Component {
       })
 
       const parsedResponse = await registerResponse.json()
-      console.log(parsedResponse)
-
       this.setState({
-        ...parsedResponse.data,
-        loading: false
+        ...parsedResponse.data
       })
 
       return parsedResponse

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
+import { pathToFileURL } from 'url';
 class Login extends Component {
   constructor(){
     super();
@@ -9,7 +10,8 @@ class Login extends Component {
     this.state = {
       username: '',
       email: '',
-      password: ''
+      password: '',
+      
     }
   }
   handleChange = (e) => {
@@ -18,10 +20,15 @@ class Login extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
 
-    const login = this.props.logIn(this.state);
+    let login = this.props.logIn(this.state)
+    let loggedIn = false;
 
     login.then((data) => {
+      
       if(data.status.message === 'Success'){
+        loggedIn = true;
+        console.log('=====> token is created and stored locally', resJson.token); //browser message
+        localStorage.setItem('user', resJson.token)
         this.props.history.push('/profile')
         console.log('hitting success')
       } else {
@@ -30,6 +37,11 @@ class Login extends Component {
     }).catch((err) => {
       console.log(err)
     })
+    setTimeout(() => {
+      if(!loggedIn) {
+        this.setState({})
+      }
+    }
 
   }
   render(){

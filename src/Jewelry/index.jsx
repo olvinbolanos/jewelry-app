@@ -53,7 +53,7 @@ class Jewelry extends Component {
 
       
     render(){
-        console.log(this.state, this.props.userInfo, '<--- in jewelry < props.')
+      console.log(this.state, '<-- this is what is goint on inside the jewelry app')
       return (
         <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
           <Grid.Column style={{maxWidth: 450}}>
