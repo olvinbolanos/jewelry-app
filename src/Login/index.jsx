@@ -10,8 +10,7 @@ class Login extends Component {
     this.state = {
       username: '',
       email: '',
-      password: '',
-      
+      password: ''
     }
   }
   handleChange = (e) => {
@@ -24,11 +23,10 @@ class Login extends Component {
     let loggedIn = false;
 
     login.then((data) => {
-      
       if(data.status.message === 'Success'){
         loggedIn = true;
-        console.log('=====> token is created and stored locally', resJson.token); //browser message
-        localStorage.setItem('user', resJson.token)
+        console.log('=====> token is created and stored locally', data.data); //browser message
+        localStorage.setItem('user', JSON.stringify(data.data))
         this.props.history.push('/profile')
         console.log('hitting success')
       } else {
@@ -37,12 +35,6 @@ class Login extends Component {
     }).catch((err) => {
       console.log(err)
     })
-    setTimeout(() => {
-      if(!loggedIn) {
-        this.setState({})
-      }
-    }
-
   }
   render(){
     return (

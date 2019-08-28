@@ -43,28 +43,20 @@ class App extends Component {
       const parsedResponse = await loginResponse.json()
       
       if (parsedResponse.status.code === 200) {
-        this.setState(() => {
-          return {
-            ...parsedResponse.data,
-            loading: false
+        setTimeout(() => {
+          if(this.state.loading) {
+            this.setState({
+              ...parsedResponse.data,
+              loading: false
+            })
           }
-        })
+        }, 500) //this will slow down before it uploads
       } else {
         console.log(parsedResponse.status.message)
       }
-
       return parsedResponse
     } catch (err) {
       console.log(err)
-    }
-  }
-
-  setSession(userControl) {
-    if (localStorage.getItem('user') === undefined) {
-      localStorage.setItem('user', JSON.stringify(userControl.data));
-      let retrievedData = localStorage.getItem('user');
-      let userParsed = JSON.parse(retrievedData);
-      return userParsed;
     }
   }
 
