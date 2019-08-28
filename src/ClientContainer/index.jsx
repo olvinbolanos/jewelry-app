@@ -58,7 +58,7 @@ class ClientContainer extends Component {
                                 <img src={`http://localhost:8000/profile_pics/${user.image}`} alt={user.user.username} />
                                 </div>
                                 <div className="content">
-                                <a className="header">{user.username}</a>
+                                <a className="header">{user.user.username}</a>
                                 <div className="meta">
                                     <span className="date">Posted on {user.created_at}</span>
                                 </div>

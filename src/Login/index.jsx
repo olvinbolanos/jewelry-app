@@ -25,10 +25,9 @@ class Login extends Component {
     login.then((data) => {
       if(data.status.message === 'Success'){
         loggedIn = true;
-        console.log('=====> token is created and stored locally', data.data); //browser message
+        // console.log('=====> token is created and stored locally', data.data); //browser message
         localStorage.setItem('user', JSON.stringify(data.data))
         this.props.history.push('/profile')
-        console.log('hitting success')
       } else {
         console.log(data, this.props)
       }
