@@ -121,7 +121,7 @@ class Profile extends Component {
       const { clients } = this.state
       return (
         <div>
-          <Profilees clientele={this.state.clients} showModal={this.showModal} deleteClient={this.deleteClient} userInfo={this.props.userInfo}/>
+          <Profilees clientele={clients} showModal={this.showModal} deleteClient={this.deleteClient} userInfo={this.props.userInfo}/>
           {this.state.showEditModal ? <EditClient closeAndEdit={this.closeAndEdit} clientToEdit={this.state.clientToEdit} handleFormChange={this.handleFormChange} /> : null}
         </div>
         )

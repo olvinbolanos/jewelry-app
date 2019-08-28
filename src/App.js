@@ -9,6 +9,7 @@ import ShippingForm from './ShippingForm'
 import ClientContainer from './ClientContainer'
 import Jewelry from './Jewelry'
 import './App.css'
+import UserLogout from './UserLogout';
 
 const My404 = () => {
   return (
@@ -105,16 +106,25 @@ class App extends Component {
     }
   }
 
+  userLoggedOut = async () => {
+    try {
+      const registerResponse = await fetch('http://localhost:8000/user/logout', {
+        method: 'GET'
+      })
+      const parsedResponse = await registerResponse.json()
+      // if(parsedResponse.status === 200)
+      // this.setState({
+      //   loading: true
+      // })
+      return parsedResponse
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
   render() {
     return (
       <main> 
-        {
-          this.state.loading ?
-          <Switch>
-            <Route exact path='/' render={(props) => <Login {...props} logIn={this.logIn} />} />
-            <Route path='/register' render={(props) => <Register {...props} register={this.register} /> } />
-          </Switch> :
-          <main>
             <Header />
             <Switch>
               <Route exact path='/' render={(props) => <Login {...props} logIn={this.logIn} />} />
@@ -123,13 +133,13 @@ class App extends Component {
               <Route path='/shippingForm' render={(props) => <ShippingForm {...props} userInfo={this.state} /> } />
               <Route path='/clientContainer' render={(props) => <ClientContainer {...props} userInfo={this.state} /> } /> 
               <Route path='/jewelry' render={(props) => <Jewelry {...props}  jewelry={this.jewelry} userInfo={this.state}/> } />
-              <Route path='/logout' />
+              <Route path='/logout' render={<UserLogout loggedOut={this.UserLoggedOut}/> }/>
               <Route component={My404} />
             </Switch>
           </main>
-        }
         
-      </main>
+        
+      
     )
   }
 }

@@ -11,7 +11,7 @@ const Profilees = (props) => {
         <div className="App-flex-cards-2">
         {
           props.userInfo.loading ?
-          'Loading.....' :
+          'You are not logged in, make sure to login to make a profile' :
           props.clientele.map((client, i) => {
             return(
             <div key={i}>

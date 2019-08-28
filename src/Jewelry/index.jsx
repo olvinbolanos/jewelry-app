@@ -53,8 +53,11 @@ class Jewelry extends Component {
 
       
     render(){
-      console.log(this.state, '<-- this is what is goint on inside the jewelry app')
       return (
+        <div>
+        {
+          this.props.userInfo.loading ?
+          "Sorry, you are not logged in, make sure to login first to post on our site":
         <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
           <Grid.Column style={{maxWidth: 450}}>
             <Header as='h2' textAlign='center'>
@@ -73,13 +76,14 @@ class Jewelry extends Component {
                 Image:
                 <Form.Input fluid icon='image' iconPosition='left' type="file" name='image' onChange={this.handleChange}/>
                 <Button fluid size='large' type='sumbit'>Register</Button>
-                
               </Segment>
             </Form>
           </Grid.Column>
         </Grid>
+        }
+        </div>
         )
+      }
     }
-  }
   
   export default withRouter(Jewelry);

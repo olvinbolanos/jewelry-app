@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
-import { pathToFileURL } from 'url';
 class Login extends Component {
   constructor(){
     super();
