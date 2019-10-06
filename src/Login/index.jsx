@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Message, Segment} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
 class Login extends Component {
@@ -19,11 +19,9 @@ class Login extends Component {
     e.preventDefault();
 
     let login = this.props.logIn(this.state)
-    let loggedIn = false;
 
     login.then((data) => {
       if(data.status.message === 'Success'){
-        loggedIn = true;
         // console.log('=====> token is created and stored locally', data.data); //browser message
         localStorage.setItem('user', JSON.stringify(data.data))
         this.props.history.push('/profile')

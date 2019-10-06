@@ -25,22 +25,22 @@ const Profilees = (props) => {
                         </div>
                       </div>
                     </div>
-                    <img src={`http://localhost:8000/profile_pics/${client.image}`} alt={props.userInfo.username} />
+                    <img src={`${process.env.REACT_APP_BACKEND_URL}/profile_pics/${client.image}`} alt={props.userInfo.username} />
                   </div>
                   <div className="content">
-                    <a className="header">{props.userInfo.username}</a>
+                    <a className="header" href="/index.html">{props.userInfo.username}</a>
                     <div className="meta">
                       <span className="date">Posted on {client.created_at}</span>
                     </div>
                   </div>
                   <div className="extra content">
-                    <a>
+                    <a href="/index.html">
                       <i className="users icon"></i>
                       {client.description}
                     </a>
                   </div>
                   <div className="extra content">
-                    <a>
+                    <a href="/index.html">
                       <i className="dollar icon"></i>
                       {client.price}
                     </a>

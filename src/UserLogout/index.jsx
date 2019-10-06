@@ -1,16 +1,24 @@
-import React from 'react'
+import React, {Component} from 'react'
 
 
-const UserLogout = () => {
+class UserLogout extends Component{
     //   delete user from localStorage
-    let removedItem = localStorage.removeItem('user');
-    return(
-        <div>
+    componentDidMount(){
+      let removedItem = localStorage.removeItem('user');
+      return removedItem
+    }
+    render() {
+        setTimeout(() => {
+            this.props.history.push('/')
+        }, 1500)
+        return(
             <div>
-                <h2>User has successfully logged out, Thank you for visiting Jewelry Shop</h2>
+                <div>
+                    <h2>User has successfully logged out, Thank you for visiting Jewelry Shop</h2>
+                </div>
             </div>
-        </div>
-    )   
+        )   
+    }
 }
 
 export default UserLogout;

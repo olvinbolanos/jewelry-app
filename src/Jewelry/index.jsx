@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom'
-import { Grid, Button, Form, Header, Image, Message, Card, Icon, Segment} from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom'
+import { Grid, Button, Form, Header, Segment} from 'semantic-ui-react'
 
 
 class Jewelry extends Component {

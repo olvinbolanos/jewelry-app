@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Grid, Button, Form, Image, Header, Message, Card, Icon} from 'semantic-ui-react'
 import { parse } from '@babel/core';
 import Banner from '../Banner'
 import '../App.css'
@@ -22,7 +20,7 @@ class ClientContainer extends Component {
     getUsers = async (data) => {
         console.log("hitting!!!!!")
         try {
-            const clientResponse = await fetch('http://localhost:8000/api/v1/', {
+            const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/`, {
                 method: 'GET'
             })
             const parsedResponse = await clientResponse.json()
@@ -55,27 +53,27 @@ class ClientContainer extends Component {
                                     </div>
                                     </div>
                                 </div>
-                                <img src={`http://localhost:8000/profile_pics/${user.image}`} alt={user.user.username} />
+                                <img src={`${process.env.REACT_APP_BACKEND_URL}/profile_pics/${user.image}`} alt={user.user.username} />
                                 </div>
                                 <div className="content">
-                                <a className="header">{user.user.username}</a>
+                                <a className="header" href="#">{user.user.username}</a>
                                 <div className="meta">
                                     <span className="date">Posted on {user.created_at}</span>
                                 </div>
                                 </div>
                                 <div className="extra content">
-                                <a>
+                                <a href="#">
                                     <i className="users icon"></i>
                                     {user.description}
                                 </a>
                                 </div>
                                 <div className="extra content">
-                                <a>
+                                <a href="#">
                                 Add to Shopping Cart
                                 <i className="shopping cart icon"></i>
                                 </a>
                                 <div className="extra content">
-                                    <a>
+                                    <a href="#">
                                         <i>${user.price}</i>
                                     </a>
                                 </div>
@@ -83,7 +81,9 @@ class ClientContainer extends Component {
                             </div>
                             </div> 
                           </div>
+                          
                         )
+                    
                     })
                 }
                 </div>

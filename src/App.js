@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Route, Switch } from 'react-router-dom'
 import Header from './Header'
-import Banner from './Banner'
 import Login from './Login'
 import Profile from './Profile'
 import Register from './Register'
@@ -32,7 +31,7 @@ class App extends Component {
 
   logIn = async (loginInfo) => {
     try {
-      const loginResponse = await fetch(`http://localhost:8000/user/login`, {
+      const loginResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/login`, {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify(loginInfo),
@@ -63,7 +62,7 @@ class App extends Component {
 
   register = async (data) => {
     try {
-      const registerResponse = await fetch(`http://localhost:8000/user/register`, {
+      const registerResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/register`, {
         method: 'POST',
         credentials: 'include',
         body: data,
@@ -86,7 +85,7 @@ class App extends Component {
   }
   jewelry = async (info) => {
     try {
-      const registerResponse = await fetch('http://localhost:8000/api/v1/', {
+      const registerResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/`, {
         method: 'POST',
         credentials: 'include',
         body: info,
@@ -108,7 +107,7 @@ class App extends Component {
 
   userLoggedOut = async () => {
     try {
-      const registerResponse = await fetch('http://localhost:8000/user/logout', {
+      const registerResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/logout`, {
         method: 'GET'
       })
       const parsedResponse = await registerResponse.json()
@@ -133,7 +132,7 @@ class App extends Component {
               <Route path='/shippingForm' render={(props) => <ShippingForm {...props} userInfo={this.state} /> } />
               <Route path='/clientContainer' render={(props) => <ClientContainer {...props} userInfo={this.state} /> } /> 
               <Route path='/jewelry' render={(props) => <Jewelry {...props}  jewelry={this.jewelry} userInfo={this.state}/> } />
-              <Route path='/logout' render={<UserLogout loggedOut={this.UserLoggedOut}/> }/>
+              <Route path='/logout' render={(props) => <UserLogout {...props} loggedOut={this.UserLoggedOut}/>}/>
               <Route component={My404} />
             </Switch>
           </main>

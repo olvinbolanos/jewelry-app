@@ -1,7 +1,5 @@
 import React , {Component} from 'react'
-import { Link } from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css';
-import { Grid, Button, Form, Header, Image, Message, Card, Icon} from 'semantic-ui-react'
 import  EditClient  from "./EditClient";
 import  Profilees from './ProfileList';
 class Profile extends Component {
@@ -31,7 +29,7 @@ class Profile extends Component {
     getClient = async (data) => {
       console.log("hitting!!!!!")
       try {
-        const clientResponse = await fetch(`http://localhost:8000/user/${this.props.userInfo.id}/clients`, {
+        const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${this.props.userInfo.id}/clients`, {
           method: 'GET'
         })
         const parsedResponse = await clientResponse.json()
@@ -67,7 +65,7 @@ class Profile extends Component {
     closeAndEdit = async (e) => {
       e.preventDefault();
       try {
-        const editRequest = await fetch(`http://localhost:8000/api/v1/${this.state.id}`, {
+        const editRequest = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/${this.state.id}`, {
           method: 'PUT',
           credentials: 'include',
           body: JSON.stringify(this.state.clientToEdit),
@@ -98,7 +96,7 @@ class Profile extends Component {
 
     deleteClient = async (id) => {
       try{
-        const deleteClient = await fetch(`http://localhost:8000/api/v1/${id}`, {
+        const deleteClient = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/${id}`, {
           method: "DELETE",
           credentials: 'include'
         }) 
