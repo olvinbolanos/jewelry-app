@@ -11,10 +11,14 @@ class Register extends Component {
       username: '',
       password: '',
       email: '',
+      error: null
     }
   }
   handleChange = (e) => {
-    this.setState({[e.target.name]: e.target.value});
+    this.setState({
+      [e.target.name]: e.target.value,
+      error: null
+    });
   }
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +28,6 @@ class Register extends Component {
     data.append('email', this.state.email);
     data.append('password', this.state.password); 
      
-
     console.log(data.entries(), ' this is data')
     for (let pair of data.entries()){
       console.log(pair[0]  ,', ', pair[1])
@@ -35,14 +38,21 @@ class Register extends Component {
     registerCall.then((data) => {
       console.log(data)
         if(data.status.message === "Success"){
+          localStorage.setItem('user', JSON.stringify(data.data))
+
+          const identifyUser = this.props.userInfo(data.data)
           this.props.history.push('/jewelry') //go post a jewelry online, go to jewelry index
+          return identifyUser
         } else {
-          console.log(data, ' this should have an error message? How could you display that on the screen')
-        }
+            this.setState({
+              error: data.status.message
+            })
+          }
     })
   }
   render(){
     console.log(this.state, this.props.userInfo, '<---Register page props')
+    const {error} = this.state
     return (
       <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
         <Grid.Column style={{maxWidth: 450}}>
@@ -58,6 +68,10 @@ class Register extends Component {
               password:
               <Form.Input fluid icon='lock' iconPosition='left' type='password' name='password' onChange={this.handleChange}/>
               <Button fluid size='large' type='sumbit'>Register</Button>
+              {
+                error 
+                ? error : null
+              }
               <Message>
                 Already a member? <Link to='/'>Login</Link>
               </Message>

@@ -24,7 +24,7 @@ class Login extends Component {
       if(data.status.message === 'Success'){
         // console.log('=====> token is created and stored locally', data.data); //browser message
         localStorage.setItem('user', JSON.stringify(data.data))
-        this.props.history.push('/profile')
+        this.props.history.push('/jewelry')
       } else {
         console.log(data, this.props)
       }

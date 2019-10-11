@@ -29,6 +29,10 @@ class App extends Component {
     }
   }
 
+  componentDidUpdate() {
+    this.clientStillActive()
+  }
+
   logIn = async (loginInfo) => {
     try {
       const loginResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/login`, {
@@ -77,7 +81,6 @@ class App extends Component {
         ...parsedResponse.data,
         loading: false
       })
-
       return parsedResponse
     } catch (err) {
       console.log(err)
@@ -121,6 +124,17 @@ class App extends Component {
     }
   }
 
+  clientStillActive = async () => {
+     try{
+       if(this.state.loading) {
+         const client = localStorage.getItem('user')
+         console.log(client, 'this is the client still logged in')
+       }
+     } catch(err) {
+       console.log(err)
+     }
+  }
+
   render() {
     return (
       <main> 
@@ -136,9 +150,6 @@ class App extends Component {
               <Route component={My404} />
             </Switch>
           </main>
-        
-        
-      
     )
   }
 }

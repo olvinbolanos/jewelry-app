@@ -29,6 +29,7 @@ class Profile extends Component {
     getClient = async (data) => {
       console.log("hitting!!!!!")
       try {
+        const client = localStorage.getItem('user')
         const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${this.props.userInfo.id}/clients`, {
           method: 'GET'
         })
@@ -115,7 +116,7 @@ class Profile extends Component {
       }
     }
     render(){
-      console.log(this.state, this.props.userInfo, 'in profile< props')
+      console.log(this.state, this.props.userInfo, 'in profile < props')
       const { clients } = this.state
       return (
         <div>

@@ -431,11 +431,11 @@ class ShippingForm extends Component {
                 <div className="fields">
                     <div className="seven wide field">
                     <label>Card Number</label>
-                        <input type="text" name="cardNumber" maxlength="16" placeholder="Card #" />
+                        <input type="text" name="cardNumber" maxLength="16" placeholder="Card #" />
                     </div>
                     <div className="three wide field">
                     <label>CVC</label>
-                        <input type="text" name="cvc" maxlength="3" placeholder="CVC" />
+                        <input type="text" name="cvc" maxLength="3" placeholder="CVC" />
                     </div>
                     <div className="six wide field">
                     <label>Expiration</label>
@@ -458,7 +458,7 @@ class ShippingForm extends Component {
                         </select>
                         </div>
                         <div className="field">
-                        <input type="text" name="expireYear" maxlength="4" placeholder="Year" />
+                        <input type="text" name="expireYear" maxLength="4" placeholder="Year" />
                         </div>
                     </div>
                     </div>
