@@ -23,19 +23,22 @@ class Profile extends Component {
     }
 
     async componentDidMount() {
-      this.getClient()
+      let client = localStorage.getItem('user')
+      let newClient = JSON.parse(client)
+      this.getClient(newClient.id)
     }
 
     getClient = async (data) => {
       console.log("hitting!!!!!")
       try {
-        const client = localStorage.getItem('user')
-        const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${this.props.userInfo.id}/clients`, {
+        // const client = localStorage.getItem('user')
+        const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${data}/clients`, {
           method: 'GET'
         })
+
         const parsedResponse = await clientResponse.json()
 
-        console.log(parsedResponse.data)
+        console.log(parsedResponse.data, "this is inside the getClient route")
           this.setState({
           clients : parsedResponse.data
         })
@@ -54,7 +57,7 @@ class Profile extends Component {
     }
 
     showModal = (client) => {
-      console.log(client)
+      console.log(client, 'in modal')
       delete client.user
       this.setState({
         clientToEdit : client,

@@ -98,6 +98,7 @@ class App extends Component {
       })
 
       const parsedResponse = await registerResponse.json()
+
       this.setState({
         ...parsedResponse.data
       })
