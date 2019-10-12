@@ -29,7 +29,9 @@ class App extends Component {
     }
   }
 
-  
+  componentDidUpdate() {
+    
+  }
 
   logIn = async (loginInfo) => {
     try {

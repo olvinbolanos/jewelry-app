@@ -31,7 +31,6 @@ class Profile extends Component {
     getClient = async (data) => {
       console.log("hitting!!!!!")
       try {
-        // const client = localStorage.getItem('user')
         const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${data}/clients`, {
           method: 'GET'
         })

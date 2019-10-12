@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Message, Segment} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
-<<<<<<< HEAD
-
-=======
->>>>>>> shoppingCart
 class Login extends Component {
   constructor(){
     super();
@@ -26,11 +22,6 @@ class Login extends Component {
 
     login.then((data) => {
       if(data.status.message === 'Success'){
-<<<<<<< HEAD
-        loggedIn = true;
-=======
-        // console.log('=====> token is created and stored locally', data.data); //browser message
->>>>>>> shoppingCart
         localStorage.setItem('user', JSON.stringify(data.data))
         this.props.history.push('/jewelry')
       } else {
