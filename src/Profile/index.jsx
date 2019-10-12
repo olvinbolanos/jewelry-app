@@ -1,7 +1,5 @@
 import React , {Component} from 'react'
-import { Link } from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css';
-import { Grid, Button, Form, Header, Image, Message, Card, Icon} from 'semantic-ui-react'
 import  EditClient  from "./EditClient";
 import  Profilees from './ProfileList';
 class Profile extends Component {
@@ -25,18 +23,22 @@ class Profile extends Component {
     }
 
     async componentDidMount() {
-      this.getClient()
+      let client = localStorage.getItem('user')
+      let newClient = JSON.parse(client)
+      this.getClient(newClient.id)
     }
 
     getClient = async (data) => {
       console.log("hitting!!!!!")
       try {
-        const clientResponse = await fetch(`http://localhost:8000/user/${this.props.userInfo.id}/clients`, {
+        // const client = localStorage.getItem('user')
+        const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${data}/clients`, {
           method: 'GET'
         })
+
         const parsedResponse = await clientResponse.json()
 
-        console.log(parsedResponse.data)
+        console.log(parsedResponse.data, "this is inside the getClient route")
           this.setState({
           clients : parsedResponse.data
         })
@@ -55,7 +57,7 @@ class Profile extends Component {
     }
 
     showModal = (client) => {
-      console.log(client)
+      console.log(client, 'in modal')
       delete client.user
       this.setState({
         clientToEdit : client,
@@ -67,7 +69,7 @@ class Profile extends Component {
     closeAndEdit = async (e) => {
       e.preventDefault();
       try {
-        const editRequest = await fetch(`http://localhost:8000/api/v1/${this.state.id}`, {
+        const editRequest = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/${this.state.id}`, {
           method: 'PUT',
           credentials: 'include',
           body: JSON.stringify(this.state.clientToEdit),
@@ -98,7 +100,7 @@ class Profile extends Component {
 
     deleteClient = async (id) => {
       try{
-        const deleteClient = await fetch(`http://localhost:8000/api/v1/${id}`, {
+        const deleteClient = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/${id}`, {
           method: "DELETE",
           credentials: 'include'
         }) 
@@ -117,11 +119,11 @@ class Profile extends Component {
       }
     }
     render(){
-      console.log(this.state, this.props.userInfo, 'in profile< props')
+      console.log(this.state, this.props.userInfo, 'in profile < props')
       const { clients } = this.state
       return (
         <div>
-          <Profilees clientele={this.state.clients} showModal={this.showModal} deleteClient={this.deleteClient} userInfo={this.props.userInfo}/>
+          <Profilees clientele={clients} showModal={this.showModal} deleteClient={this.deleteClient} userInfo={this.props.userInfo}/>
           {this.state.showEditModal ? <EditClient closeAndEdit={this.closeAndEdit} clientToEdit={this.state.clientToEdit} handleFormChange={this.handleFormChange} /> : null}
         </div>
         )

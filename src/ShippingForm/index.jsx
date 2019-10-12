@@ -1,9 +1,4 @@
-// this will be to put up a 
-// new jewelry page
-
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Grid, Button, Form, Header, Image, Message, Card, Icon} from 'semantic-ui-react'
 import '../App.css'
 
 class ShippingForm extends Component {
@@ -11,16 +6,63 @@ class ShippingForm extends Component {
         super();
         
         this.state = {
-            id: '',
-            image: '',
-            username: '',
-            price: '',
-            title: ''
+            firstName: '',
+            lastName: '',
+            address1: '',
+            address2: '',
+            city: '',
+            state: '',
+            postal: '',
+            country: '',
+            phone: '',
+            orderNumber: '',
+            cvc: '',
+            cardType : '',
+            cardNumber : '',
+            expireMonth: '',
+            expireYear: '',
+            subTotal: 0,
+            tax: 0,
+            shipping: 0,
+            totalAmount: 0,
+
+            orderItems: []
         }
     }
 
-    render(){
-        console.log(this.state, this.props.userInfo, 'in ShowPage < props')
+    getSubTotal = () => {
+        let subTotal = 0;
+
+        console.log(`===>GETSUBTOTAL:  subtotal = ${this.state.subTotal}`)
+        //get order info from localStorate
+        let orderList = localStorage.getItem('orderList') || '';
+        let orderItems = orderList ? JSON.parse(orderList) : [];
+        orderItems.map((elem) => subTotal += (elem.price * elem.quantity))
+        this.setState({subTotal:subTotal}, this.calcTotals)
+    }
+    
+
+    _getInputData = (data) => {
+        this.setState(data);
+    }
+
+    getContactInfo = (firstName, lastName, address1, address2, city, state, postal, country) => {
+        this.setState({ 
+            firstName: firstName,
+            lastName: lastName,
+            address1: address1,
+            address2: address2,
+            city: city,
+            state: state,
+            postal: postal,
+            country: country
+        })
+    }
+
+    getExtras
+    
+    render() {
+        console.log(this.state, this.props.userInfo, 'in ShowPage < props');
 
         return(
           <div>
@@ -30,10 +72,10 @@ class ShippingForm extends Component {
                     <label>Name</label>
                     <div className="two fields">
                     <div className="field">
-                        <input type="text" name="shipping[first-name]" placeholder="First Name" />
+                        <input type="text" name="firstName" placeholder="First Name" />
                     </div>
                     <div className="field">
-                        <input type="text" name="shipping[last-name]" placeholder="Last Name" />
+                        <input type="text" name="lastName" placeholder="Last Name" />
                     </div>
                     </div>
                 </div>
@@ -41,17 +83,17 @@ class ShippingForm extends Component {
                     <label>Billing Address</label>
                     <div className="fields">
                     <div className="twelve wide field">
-                        <input type="text" name="shipping[address]" placeholder="Street Address" />
+                        <input type="text" name="address1" placeholder="Street Address" />
                     </div>
                     <div className="four wide field">
-                        <input type="text" name="shipping[address-2]" placeholder="Apt #" />
+                        <input type="text" name="address2" placeholder="Apt #" />
                     </div>
                     </div>
                 </div>
                 <div className="two fields">
                     <div className="field">
                     <label>State</label>
-                    <select className="ui fluid dropdown">
+                    <select className="ui fluid dropdown" name="state">
                         <option value="">State</option>
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
@@ -112,7 +154,7 @@ class ShippingForm extends Component {
                         <input type="hidden" name="country" />
                         <i className="dropdown icon"></i>
                         <div className="text">Select Country</div>
-                        <div className="menu">
+                    <div className="menu">
                     <div className="item" data-value="af"><i className="af flag"></i>Afghanistan</div>
                     <div className="item" data-value="ax"><i className="ax flag"></i>Aland Islands</div>
                     <div className="item" data-value="al"><i className="al flag"></i>Albania</div>
@@ -355,16 +397,16 @@ class ShippingForm extends Component {
                     <div className="item" data-value="ye"><i className="ye flag"></i>Yemen</div>
                     <div className="item" data-value="zm"><i className="zm flag"></i>Zambia</div>
                     <div className="item" data-value="zw"><i className="zw flag"></i>Zimbabwe</div>
-                
+                  </div>
                 </div>
             </div>
         </div>
-    </div>
+    
                 <h4 className="ui dividing header">Billing Information</h4>
                 <div className="field">
                     <label>Card Type</label>
                     <div className="ui selection dropdown">
-                    <input type="hidden" name="card[type]" />
+                    <input type="hidden" name="cardType" />
                     <div className="text">Type</div>
                     <i className="dropdown icon"></i>
                     <div className="menu">
@@ -383,21 +425,23 @@ class ShippingForm extends Component {
                     </div>
                 </div>
             </div>
+            
+
                 
                 <div className="fields">
                     <div className="seven wide field">
                     <label>Card Number</label>
-                        <input type="text" name="card[number]" maxlength="16" placeholder="Card #" />
+                        <input type="text" name="cardNumber" maxLength="16" placeholder="Card #" />
                     </div>
                     <div className="three wide field">
                     <label>CVC</label>
-                        <input type="text" name="card[cvc]" maxlength="3" placeholder="CVC" />
+                        <input type="text" name="cvc" maxLength="3" placeholder="CVC" />
                     </div>
                     <div className="six wide field">
                     <label>Expiration</label>
                     <div className="two fields">
                         <div className="field">
-                        <select className="ui fluid search dropdown" name="card[expire-month]">
+                        <select className="ui fluid search dropdown" name="expireMonth">
                             <option value="">Month</option>
                             <option value="1">January</option>
                             <option value="2">February</option>
@@ -414,13 +458,13 @@ class ShippingForm extends Component {
                         </select>
                         </div>
                         <div className="field">
-                        <input type="text" name="card[expire-year]" maxlength="4" placeholder="Year" />
+                        <input type="text" name="expireYear" maxLength="4" placeholder="Year" />
                         </div>
                     </div>
                     </div>
                 </div>
                 
-                <div className="ui button" tabindex="0">Submit Order</div>
+                <div className="ui button" tabIndex="0">Submit Order</div>
                 </form>  
           </div>
         )
