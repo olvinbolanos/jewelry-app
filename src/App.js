@@ -29,6 +29,8 @@ class App extends Component {
     }
   }
 
+  
+
   logIn = async (loginInfo) => {
     try {
       const loginResponse = await fetch(`http://localhost:8000/user/login`, {

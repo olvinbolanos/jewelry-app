@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
-import { pathToFileURL } from 'url';
+
 class Login extends Component {
   constructor(){
     super();
@@ -25,7 +25,6 @@ class Login extends Component {
     login.then((data) => {
       if(data.status.message === 'Success'){
         loggedIn = true;
-        // console.log('=====> token is created and stored locally', data.data); //browser message
         localStorage.setItem('user', JSON.stringify(data.data))
         this.props.history.push('/profile')
       } else {
