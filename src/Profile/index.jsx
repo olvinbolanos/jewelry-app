@@ -23,16 +23,15 @@ class Profile extends Component {
     }
 
     async componentDidMount() {
-      let client = localStorage.getItem('user')
-      let newClient = JSON.parse(client)
-      this.getClient(newClient.id)
+        let client = localStorage.getItem('user')
+        // let newClient = JSON.parse(client)
+        // this.getClient(newClient.id)
     }
 
     getClient = async (data) => {
       console.log("hitting!!!!!")
       try {
-        // const client = localStorage.getItem('user')
-        const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${data}/clients`, {
+        const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${this.props.userInfo.id}/clients`, {
           method: 'GET'
         })
 

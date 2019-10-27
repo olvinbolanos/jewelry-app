@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { parse } from '@babel/core';
 import Banner from '../Banner'
 import '../App.css'
 

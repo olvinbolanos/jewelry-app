@@ -29,9 +29,7 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate() {
-    this.clientStillActive()
-  }
+  
 
   logIn = async (loginInfo) => {
     try {
@@ -55,6 +53,8 @@ class App extends Component {
             })
           }
         }, 500) //this will slow down before it uploads
+      } else if (localStorage.getItem('user')) {
+        console.log('I hit the user in local storage')
       } else {
         console.log(parsedResponse.status.message)
       }
@@ -109,17 +109,19 @@ class App extends Component {
     }
   }
 
-  userLoggedOut = async () => {
+  logout = async () => {
     try {
-      const registerResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/logout`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/logout`, {
         method: 'GET'
       })
-      const parsedResponse = await registerResponse.json()
+      const parsedResponse = await response.json()
+      console.log(parsedResponse, ' this is from user logging out')
       // if(parsedResponse.status === 200)
-      // this.setState({
-      //   loading: true
-      // })
-      return parsedResponse
+      this.setState({
+        loading: true
+      })
+      // return parsedResponse
+      console.log(parsedResponse)
     } catch(err) {
       console.log(err)
     }
@@ -129,7 +131,14 @@ class App extends Component {
      try{
        if(this.state.loading) {
          const client = localStorage.getItem('user')
-         console.log(client, 'this is the client still logged in')
+         const clientParsed = await JSON.parse(client)
+        //  this.setState({
+        //    id: clientParsed.id,
+        //    username: clientParsed.username,
+        //    email: clientParsed.email,
+        //    loading: false
+        //  })
+        console.log(clientParsed,  ' this is local storage')
        }
      } catch(err) {
        console.log(err)
@@ -139,18 +148,26 @@ class App extends Component {
   render() {
     return (
       <main> 
+        {
+          this.state.loading ?
+          <Switch>
+            <Route exact path='/' render={(props) => <Login {...props} logIn={this.logIn} />} />
+            <Route path='/register' render={(props) => <Register {...props} register={this.register} /> } />
+          </Switch> :
+          <main>
             <Header />
             <Switch>
-              <Route exact path='/' render={(props) => <Login {...props} logIn={this.logIn} />} />
-              <Route path='/register' render={(props) => <Register {...props} register={this.register} /> } />
               <Route path='/profile' render={(props) => <Profile {...props} userInfo={this.state} /> } />
               <Route path='/shippingForm' render={(props) => <ShippingForm {...props} userInfo={this.state} /> } />
               <Route path='/clientContainer' render={(props) => <ClientContainer {...props} userInfo={this.state} /> } /> 
               <Route path='/jewelry' render={(props) => <Jewelry {...props}  jewelry={this.jewelry} userInfo={this.state}/> } />
-              <Route path='/logout' render={(props) => <UserLogout {...props} loggedOut={this.UserLoggedOut}/>}/>
+              <Route path='/logout' render={(props)=> <UserLogout {...props} userInfo={this.state}/> } /> 
               <Route component={My404} />
             </Switch>
           </main>
+        }
+        
+      </main>
     )
   }
 }

@@ -5,11 +5,22 @@ class UserLogout extends Component{
     //   delete user from localStorage
     componentDidMount(){
       let removedItem = localStorage.removeItem('user');
+      
       return removedItem
     }
     render() {
+        console.log(this.props.userInfo)
         setTimeout(() => {
+            this.setState({
+              userInfo: {
+                  id: '',
+                  username: '',
+                  email: '',
+                  loading: true,
+              } 
+            })
             this.props.history.push('/')
+            
         }, 1500)
         return(
             <div>

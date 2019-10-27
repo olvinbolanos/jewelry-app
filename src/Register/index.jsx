@@ -39,19 +39,16 @@ class Register extends Component {
       console.log(data)
         if(data.status.message === "Success"){
           localStorage.setItem('user', JSON.stringify(data.data))
-
-          const identifyUser = this.props.userInfo(data.data)
           this.props.history.push('/jewelry') //go post a jewelry online, go to jewelry index
-          return identifyUser
         } else {
-            this.setState({
-              error: data.status.message
-            })
+          console.log(data)
+            // this.setState({
+            //   error: data.status
+            // })
           }
     })
   }
-  render(){
-    console.log(this.state, this.props.userInfo, '<---Register page props')
+  render(){ 
     const {error} = this.state
     return (
       <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
@@ -67,11 +64,8 @@ class Register extends Component {
               <Form.Input fluid icon='mail' iconPosition='left' placeholder='email' type='text' name='email' onChange={this.handleChange}/>
               password:
               <Form.Input fluid icon='lock' iconPosition='left' type='password' name='password' onChange={this.handleChange}/>
+              { error ? error.message : null}
               <Button fluid size='large' type='sumbit'>Register</Button>
-              {
-                error 
-                ? error : null
-              }
               <Message>
                 Already a member? <Link to='/'>Login</Link>
               </Message>
