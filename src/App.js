@@ -29,8 +29,17 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate() {
+  async componentDidMount() {
+    const client = localStorage.getItem('user')
+    let newClient = JSON.parse(client)
     
+    if(newClient.id) {
+      // this.setState({
+      //   ...newClient,
+      //   loading: false,
+      // })
+      this.getClient()
+    }
   }
 
   logIn = async (loginInfo) => {
@@ -104,6 +113,34 @@ class App extends Component {
       })
 
       return parsedResponse
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  getClient = async () => {
+    console.log("hitting!!!!!")
+    try {
+      const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/`)
+
+      if (clientResponse.status !== 200) {
+        throw Error('server 404, error!!!')
+      }
+
+      const parsedResponse = await clientResponse.json()
+
+      const user = JSON.parse(localStorage.getItem('user'))
+
+      const userRoute = parsedResponse.data.filter(item =>
+        item.user.id = user.id
+      )
+        this.setState({
+          ...userRoute.user,
+          loading: false
+
+        })
+        console.log(userRoute, '<--- this is userRoute getClient')
+      
     } catch (err) {
       console.log(err)
     }

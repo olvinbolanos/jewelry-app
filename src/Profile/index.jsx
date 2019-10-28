@@ -23,24 +23,40 @@ class Profile extends Component {
     }
 
     async componentDidMount() {
-      let client = localStorage.getItem('user')
+      const client = localStorage.getItem('user')
       let newClient = JSON.parse(client)
-      this.getClient(newClient.id)
+      
+      if(newClient.id) {
+        this.setState({
+          ...newClient,
+          loading: false,
+        })
+        this.getClient()
+      }
     }
 
-    getClient = async (data) => {
+    getClient = async () => {
       console.log("hitting!!!!!")
       try {
-        const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${data}/clients`, {
-          method: 'GET'
-        })
+        const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/`)
+
+        if (clientResponse.status !== 200) {
+          throw Error('server 404, error!!!')
+        }
 
         const parsedResponse = await clientResponse.json()
 
-        console.log(parsedResponse.data, "this is inside the getClient route")
+        const user = JSON.parse(localStorage.getItem('user'))
+
+        const userRoute = parsedResponse.data.filter(item =>
+          item.user.id = user.id
+        )
           this.setState({
-          clients : parsedResponse.data
-        })
+            clients: [...userRoute]
+
+          })
+          console.log(userRoute, '<--- this is userRoute getClient')
+        
       } catch (err) {
         console.log(err)
       }

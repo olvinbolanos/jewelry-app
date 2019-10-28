@@ -9,11 +9,15 @@ class Login extends Component {
     this.state = {
       username: '',
       email: '',
-      password: ''
+      password: '',
+      error: null
     }
   }
   handleChange = (e) => {
-    this.setState({[e.target.name]: e.target.value});
+    this.setState({
+      [e.target.name]: e.target.value,
+      error: null
+    });
   }
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,12 +30,16 @@ class Login extends Component {
         this.props.history.push('/jewelry')
       } else {
         console.log(data, this.props)
+        this.setState({
+          error: data.status.message
+        })
       }
     }).catch((err) => {
       console.log(err)
     })
   }
   render(){
+    const {error} = this.state
     return (
       <Grid textAlign='center' verticalAlign='middle' style={{ height: '100vh'}}>
         <Grid.Column style={{maxWidth: 450}}>
@@ -44,6 +52,7 @@ class Login extends Component {
               <Form.Input fluid icon='mail' iconPosition='left' placeholder='email' type='text' name='email' onChange={this.handleChange}/>
               password:
               <Form.Input fluid icon='lock' iconPosition='left' type='password' name='password' onChange={this.handleChange}/>
+              {error ? error : null}
               <Button fluid size='large' type='sumbit'>Login</Button>
               <Message>
                 Not a member? <Link to='/register'>Register</Link>
