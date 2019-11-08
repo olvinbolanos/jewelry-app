@@ -2,13 +2,14 @@ import React, {Component} from 'react'
 
 
 class UserLogout extends Component{
-    //   delete user from localStorage
+   
     componentDidMount(){
       let removedItem = localStorage.removeItem('user');
       return removedItem
     }
     render() {
         setTimeout(() => {
+            console.log('coming from updateUser ', this.props.updateUser())
             this.props.history.push('/')
         }, 1500)
         return(

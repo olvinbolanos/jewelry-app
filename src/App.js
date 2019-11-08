@@ -9,6 +9,7 @@ import ShippingForm from './ShippingForm'
 import ClientContainer from './ClientContainer'
 import Jewelry from './Jewelry'
 import './App.css'
+import UserLogout from './UserLogout';
 
 const My404 = () => {
   return (
@@ -30,14 +31,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const client = localStorage.getItem('user')
-    let newClient = JSON.parse(client)
-    
-    if(newClient.id) {
-      // this.setState({
-      //   ...newClient,
-      //   loading: false,
-      // })
+    if(localStorage.getItem('user')) {
       this.getClient()
     }
   }
@@ -145,6 +139,12 @@ class App extends Component {
       console.log(err)
     }
   }
+  updateUser = user => {
+    this.setState({
+      ...user,
+      loading: true
+    })
+  }
 
   render() {
     return (
@@ -164,7 +164,7 @@ class App extends Component {
               <Route path='/shippingForm' render={(props) => <ShippingForm {...props} userInfo={this.state} /> } />
               <Route path='/clientContainer' render={(props) => <ClientContainer {...props} userInfo={this.state} /> } /> 
               <Route path='/jewelry' render={(props) => <Jewelry {...props}  jewelry={this.jewelry} userInfo={this.state}/> } />
-              <Route path='/logout' />
+              <Route path='/logout' render={(props) => <UserLogout {...props} userInfo={this.state} updateUser={this.updateUser}/> } />
               <Route component={My404} />
             </Switch>
           </main>
