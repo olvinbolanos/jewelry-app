@@ -56,7 +56,7 @@ class Cart extends Component {
       const { orderItems } = this.state
       return (
         <div>
-          <div style={styles.boxBorder}>
+          <div style={Styles.boxBorder}>
             <h2>Shopping Cart:</h2>
           </div>
           {/* Items in Cart */}
@@ -81,6 +81,10 @@ class Cart extends Component {
       )
   }
 }
+
+export default Cart
+
+
 
 const Styles = {
     boxBorder: {

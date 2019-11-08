@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Route, Switch } from 'react-router-dom'
+import Cart from './Cart'
+import ShopItem from './ShopItem'
 import Header from './Header'
+import Banner from './Banner'
 import Login from './Login'
 import Profile from './Profile'
 import Register from './Register'
@@ -29,11 +32,15 @@ class App extends Component {
     }
   }
 
-  
+  async componentDidMount() {
+    if(localStorage.getItem('user')) {
+      this.getClient()
+    }
+  }
 
   logIn = async (loginInfo) => {
     try {
-      const loginResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/login`, {
+      const loginResponse = await fetch(`http://localhost:8000/user/login`, {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify(loginInfo),
@@ -66,7 +73,7 @@ class App extends Component {
 
   register = async (data) => {
     try {
-      const registerResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/register`, {
+      const registerResponse = await fetch(`http://localhost:8000/user/register`, {
         method: 'POST',
         credentials: 'include',
         body: data,
@@ -81,6 +88,7 @@ class App extends Component {
         ...parsedResponse.data,
         loading: false
       })
+
       return parsedResponse
     } catch (err) {
       console.log(err)
@@ -88,7 +96,7 @@ class App extends Component {
   }
   jewelry = async (info) => {
     try {
-      const registerResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/`, {
+      const registerResponse = await fetch('http://localhost:8000/api/v1/', {
         method: 'POST',
         credentials: 'include',
         body: info,
@@ -98,7 +106,6 @@ class App extends Component {
       })
 
       const parsedResponse = await registerResponse.json()
-
       this.setState({
         ...parsedResponse.data
       })
@@ -109,40 +116,38 @@ class App extends Component {
     }
   }
 
-  logout = async () => {
+  getClient = async () => {
+    console.log("hitting!!!!!")
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/logout`, {
-        method: 'GET'
-      })
-      const parsedResponse = await response.json()
-      console.log(parsedResponse, ' this is from user logging out')
-      // if(parsedResponse.status === 200)
-      this.setState({
-        loading: true
-      })
-      // return parsedResponse
-      console.log(parsedResponse)
-    } catch(err) {
+      const clientResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/`)
+
+      if (clientResponse.status !== 200) {
+        throw Error('server 404, error!!!')
+      }
+
+      const parsedResponse = await clientResponse.json()
+
+      const user = JSON.parse(localStorage.getItem('user'))
+
+      const userRoute = parsedResponse.data.filter(item =>
+        item.user.id = user.id
+      )
+        this.setState({
+          ...userRoute.user,
+          loading: false
+
+        })
+        console.log(userRoute, '<--- this is userRoute getClient')
+      
+    } catch (err) {
       console.log(err)
     }
   }
-
-  clientStillActive = async () => {
-     try{
-       if(this.state.loading) {
-         const client = localStorage.getItem('user')
-         const clientParsed = await JSON.parse(client)
-        //  this.setState({
-        //    id: clientParsed.id,
-        //    username: clientParsed.username,
-        //    email: clientParsed.email,
-        //    loading: false
-        //  })
-        console.log(clientParsed,  ' this is local storage')
-       }
-     } catch(err) {
-       console.log(err)
-     }
+  updateUser = user => {
+    this.setState({
+      ...user,
+      loading: true
+    })
   }
 
   render() {
@@ -158,10 +163,12 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path='/profile' render={(props) => <Profile {...props} userInfo={this.state} /> } />
-              <Route path='/shippingForm' render={(props) => <ShippingForm {...props} userInfo={this.state} /> } />
               <Route path='/clientContainer' render={(props) => <ClientContainer {...props} userInfo={this.state} /> } /> 
               <Route path='/jewelry' render={(props) => <Jewelry {...props}  jewelry={this.jewelry} userInfo={this.state}/> } />
-              <Route path='/logout' render={(props)=> <UserLogout {...props} userInfo={this.state}/> } /> 
+              <Route exact path='/jewelry/:_id' component={ShopItem} />
+              <Route exact path='/cart' component={Cart} />
+              <Route exact path='/shipping' component={ShippingForm} />
+              <Route path='/logout' render={(props) => <UserLogout {...props} userInfo={this.state} updateUser={this.updateUser}/> } />
               <Route component={My404} />
             </Switch>
           </main>
