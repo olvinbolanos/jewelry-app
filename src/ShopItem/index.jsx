@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Message from './Message'
-import { fontAwesomeIcon } from '@fontawesome/react-fontawesome' //needed - dont believe the warning
+// import { fontAwesomeIcon } from '@fontawesome/react-fontawesome' //needed - dont believe the warning
 import { NavLink } from 'react-router-dom'
+import Message from '../Message'
 
 class ShopItem extends Component { //Artwork
     state = {
@@ -40,7 +40,10 @@ class ShopItem extends Component { //Artwork
           <div style = {styles.layout4_1col} >
             <div style = {styles.floating_product}>
               <NavLink to='/what'>
-                <div style= {styles.closeMe}><fontAwesomeIcon icon="times-circle" /></div>
+                <div style= {styles.closeMe}>
+                  {/* <fontAwesomeIcon icon="times-circle" /> */}
+                  fontAwesome Icon Here
+                </div>
               </NavLink>
             <div style = {styles.imgContainer} >
               <img style={styles.imgurl} src={itemInfo.imgurl} alt={itemInfo.description} />
