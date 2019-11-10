@@ -3,13 +3,13 @@ import {Route, Switch } from 'react-router-dom'
 import Cart from './Cart'
 import ShopItem from './ShopItem'
 import Header from './Header'
-import Banner from './Banner'
 import Login from './Login'
 import Profile from './Profile'
 import Register from './Register'
 import ShippingForm from './ShippingForm'
 import ClientContainer from './ClientContainer'
 import Jewelry from './Jewelry'
+import Checkout from './Checkout'
 import './App.css'
 import UserLogout from './UserLogout';
 
@@ -137,7 +137,7 @@ class App extends Component {
           loading: false
 
         })
-        console.log(userRoute, '<--- this is userRoute getClient')
+        console.log(userRoute.user, '<--- this is user in App')
       
     } catch (err) {
       console.log(err)

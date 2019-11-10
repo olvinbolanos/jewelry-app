@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../App.css'
 
 class CartItem extends Component {
@@ -14,7 +15,7 @@ class CartItem extends Component {
         <div>
         <div idx={this.props.idx}>
             <div>
-                <img src={item.imgurl} width="300px" alt=''/>
+                <img src={item.imgurl} width="300px" alt='item.description'/>
                 <p>{this.props.idx+1}</p>
             </div>
         </div>
@@ -28,7 +29,7 @@ class CartItem extends Component {
 
         <div style={{display: 'flex'}}>
           <div onClick={() => this.props.deleteItem(this.props.idx)}>
-            <i className="trash icon">Delete item</i>
+            <p><i className="trash icon"></i>Delete item  </p>
           </div>
         <div>
         <h3>${item.quantity * item.price}</h3>

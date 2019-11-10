@@ -9,7 +9,6 @@ class Profile extends Component {
       this.state = {
        id: '',
        email: '',
-       image: '',
        username: '',
        clients: [],
        showEditModal: false,
@@ -53,7 +52,6 @@ class Profile extends Component {
         )
           this.setState({
             clients: [...userRoute]
-
           })
           console.log(userRoute, '<--- this is userRoute getClient')
         
@@ -138,7 +136,7 @@ class Profile extends Component {
       const { clients } = this.state
       return (
         <div>
-          <Profilees clientele={clients} showModal={this.showModal} deleteClient={this.deleteClient} userInfo={this.props.userInfo}/>
+          <Profilees clientele={clients} showModal={this.showModal} deleteClient={this.deleteClient} userInfo={this.state}/>
           {this.state.showEditModal ? <EditClient closeAndEdit={this.closeAndEdit} clientToEdit={this.state.clientToEdit} handleFormChange={this.handleFormChange} /> : null}
         </div>
         )

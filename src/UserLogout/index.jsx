@@ -2,26 +2,25 @@ import React, {Component} from 'react'
 
 
 class UserLogout extends Component{
-   
-    componentDidMount(){
-      let removedItem = localStorage.removeItem('user');
+  componentDidMount(){
+    let removedItem = localStorage.removeItem('user');
       
-      return removedItem
-    }
-    render() {
-        console.log(this.props.userInfo)
-        setTimeout(() => {
-            console.log('coming from updateUser ', this.props.updateUser())
-            this.props.history.push('/')
+    return removedItem
+  }
+  render() {
+    console.log(this.props.userInfo)
+    setTimeout(() => {
+      console.log('coming from updateUser ', this.props.updateUser())
+      this.props.history.push('/')
             
-        }, 1500)
-        return(
+    }, 1500)
+      return(
+        <div>
             <div>
-                <div>
-                    <h2>User has successfully logged out, Thank you for visiting Jewelry Shop</h2>
-                </div>
+                <h2>User has successfully logged out, Thank you for visiting Jewelry Shop</h2>
             </div>
-        )   
+        </div>
+      )   
     }
 }
 
