@@ -13,7 +13,7 @@ class Cart extends Component {
 
  getSubTotal = () =>  {
      let subTotal = 0
-     this.state.orderItems.map( (elem) => {
+     this.state.orderItems.map(elem => {
          subTotal += (elem.price * elem.quantity)
      });
  }
@@ -35,18 +35,18 @@ class Cart extends Component {
       // this will be set in local storage for the user to retrieve items
   }
 
-  updateTotal() {
+  updateTotal= () => {
       this.updateOrderList()
-      this.getSubtotal()
+      this.getSubTotal()
   }
 
-  changeQuant (position, quant) {
+  changeQuant = (position, quant) => {
     let orderItems = this.state.orderItems
     orderItems[position].quantity = quant
     this.setState({orderItems: orderItems}, this.updateTotal) // reset the state back to 0
   }
 
-  deleteItem (position) {
+  deleteItem = (position) => {
     let orderItems = this.state.orderItems.slice() // copy from state
     orderItems.splice(position, 1); // remove this item that client doesn't want to purchase
     this.setState({ orderItems : orderItems}, this.updateTotal) //reset the state to update
@@ -58,7 +58,9 @@ class Cart extends Component {
     return (
     <div>
     <div style={Styles.boxBorder}>
-      <h2>Shopping Cart:</h2>
+      <div style = {Styles.pageTitle}>
+        <h2>Shopping Cart:</h2>
+      </div>
     </div>
     {/* Items in Cart */}
     {
