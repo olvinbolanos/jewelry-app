@@ -40,14 +40,16 @@ class App extends Component {
 
   logIn = async (loginInfo) => {
     try {
-      const loginResponse = await fetch(`http://localhost:8000/user/login`, {
-        method: 'POST',
-        credentials: 'include',
-        body: JSON.stringify(loginInfo),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      const loginResponse = 
+        await fetch(`http://localhost:8000/user/login`, 
+        {
+          method: 'POST',
+          credentials: 'include',
+          body: JSON.stringify(loginInfo),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
 
       const parsedResponse = await loginResponse.json()
       
@@ -157,19 +159,19 @@ class App extends Component {
           this.state.loading ?
           <Switch>
             <Route exact path='/' render={(props) => <Login {...props} logIn={this.logIn} />} />
-            <Route path='/register' render={(props) => <Register {...props} register={this.register} /> } />
+            <Route exact path='/register' render={(props) => <Register {...props} register={this.register} /> } />
           </Switch> :
           <main>
             <Header />
             <Switch>
-              <Route path='/profile' render={(props) => <Profile {...props} userInfo={this.state} /> } />
-              <Route path='/clientContainer' render={(props) => <ClientContainer {...props} userInfo={this.state} /> } /> 
-              <Route path='/jewelry' render={(props) => <Jewelry {...props}  jewelry={this.jewelry} userInfo={this.state}/> } />
+              <Route exact path='/profile' render={(props) => <Profile {...props} userInfo={this.state} /> } />
+              <Route exact path='/clientContainer' render={(props) => <ClientContainer {...props} userInfo={this.state} /> } /> 
+              <Route exact path='/jewelry' render={(props) => <Jewelry {...props}  jewelry={this.jewelry} userInfo={this.state}/> } />
               <Route exact path='/jewelry/:_id' component={ShopItem} />
               <Route exact path='/cart' component={Cart} />
               <Route exact path='/shipping' component={ShippingForm} />
-              <Route path='/logout' render={(props) => <UserLogout {...props} userInfo={this.state} updateUser={this.updateUser}/> } />
-              <Route component={My404} />
+              <Route exact path='/logout' render={(props) => <UserLogout {...props} userInfo={this.state} updateUser={this.updateUser}/> } />
+              <Route exact component={My404} />
             </Switch>
           </main>
         }
