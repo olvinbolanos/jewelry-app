@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from './node_modules/react'
 
 class CheckoutContactInfo extends Component {
     state = {
@@ -39,17 +39,16 @@ class CheckoutContactInfo extends Component {
 
     render(){
       return(
-        <div style={style.layout2col}>
+        <div style={styles.layout2col}>
           <div style={styles.contact}>
-            
+            <h3>shipping address: <span style={styles.note}>(USA only)</span></h3>
           </div>
-            
         </div>
       )
     }
 }
 
-
+export default CheckoutContactInfo
 
 let styles = {
   boxBorder: {

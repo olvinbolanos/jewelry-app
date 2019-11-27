@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Payment from './Payment'
-import CheckoutContactInfo from './CheckoutContactInfo'
-import CheckoutTotals from './CheckoutTotals'
+import CheckoutContactInfo from '../CheckoutContactInfo'
+import CheckoutTotals from '../CheckoutTotals'
 
 class Checkout extends Component {
   state= {
