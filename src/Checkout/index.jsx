@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Payment from './Payment'
+// import Payment from './Payment'
 import CheckoutContactInfo from '../CheckoutContactInfo'
-import CheckoutTotals from '../CheckoutTotals'
+import CheckoutTotal from '../CheckOutTotals'
 
 class Checkout extends Component {
   state= {
@@ -129,7 +129,7 @@ class Checkout extends Component {
         <CheckoutContactInfo 
         _getInputData={this._getInputData} 
         />
-        <CheckoutTotals 
+        <CheckoutTotal
         subTotal= {subTotal} 
         state = {state}
         _getInputData = {this._getInputData} 
@@ -143,11 +143,11 @@ class Checkout extends Component {
             )
         }>
         <div style = {styles.paymentContainer}>
-          <Payment
+          {/* <Payment
             name= {cc_fullname}
             description= {orderNumber}
             amount= {subTotal}
-          />
+          /> */}
         </div>
       </div>
     </div>
