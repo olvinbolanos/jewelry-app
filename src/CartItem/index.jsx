@@ -14,10 +14,10 @@ class CartItem extends Component {
     return (
         <div>
         <div idx={this.props.idx}>
-            <div>
-                <img src={item.imgurl} width="300px" alt='item.description'/>
-                <p>{this.props.idx+1}</p>
-            </div>
+          <div>
+            <img src={item.imgurl} width="300px" alt='item.description'/>
+            <p>{this.props.idx+1}</p>
+          </div>
         </div>
         <div>
         <p>Print with Image '{item.name}'</p>
@@ -32,7 +32,7 @@ class CartItem extends Component {
             <p><i className="trash icon"></i>Delete item  </p>
           </div>
         <div>
-        <h3>${item.quantity * item.price}</h3>
+        {/* <h3>{item.quantity * item.price}</h3> */}
         </div>
       </div>
     </div>

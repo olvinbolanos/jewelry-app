@@ -16,12 +16,16 @@ class Cart extends Component {
      this.state.orderItems.map(elem => {
          subTotal += (elem.price * elem.quantity)
      });
+     //update the total in state
+     this.setState({
+       subTotal: subTotal
+     })
  }
 
   getOrderList = () => {
     let cb = () => {
-        this.getSubTotal();
-        console.log(`orderItems: ${this.state.orderItems}`)
+      this.getSubTotal();
+      console.log(`orderItems: ${this.state.orderItems}`)
     }
     //get order info from localStorage
     let orderList = localStorage.getItem('orderList') || '';
@@ -66,15 +70,17 @@ class Cart extends Component {
     {
       orderItems.map( (elem, i) => {
         return (
-          <CartItem key={i} item={elem} idx={i} deleteItem={this.deleteItem}
-          changeQuant={this.changeQuant} />
+          <CartItem key={i} 
+          item={elem} idx={i} 
+          deleteItem={this.deleteItem}
+          changeQuant={this.changeQuant} 
+          />
         )
       })
     }
     <div styles= {Styles.total_line}>
       <div></div>
-      <h4 style={Styles.total}>Subtotal: </h4>
-      <h4 style={Styles.total}>${this.state.subTotal}</h4>
+      <h4 style={Styles.total}>Subtotal: ${this.state.subTotal}</h4>
     </div>
 
     <div style={Object.assign({}, Styles.checkoutContainer, visibility)}>
@@ -105,7 +111,7 @@ const Styles = {
     display: 'grid',
     gridTemplateColumns: '14fr 1fr 2fr',
     gridGap: 0,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     width: '95%',
     alignSelf: 'center',
     justifySelf: 'center',

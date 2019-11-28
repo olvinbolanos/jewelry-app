@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
 class NavButton extends Component {
-    render = () => {
-        let width = this.props.width;
-        let navStyle = Object.assign(styles.navLink, (width ? { width: width } : '')) //override width
+  render = () => {
+      let width = this.props.width;
+      let navStyle = Object.assign(styles.navLink, (width ? { width: width } : '')) //override width
 
-        return (
-          <NavLink to={this.props.url} style={navStyle} history={this.props.history} >
-            <div style={styles.navButton}>
-              <p style={styles.bText}>{this.props.bText}</p>
-            </div>
-          </NavLink>
-        )
-    }
+      return (
+        <NavLink to={this.props.url} style={navStyle} history={this.props.history} >
+          <div style={styles.navButton}>
+             <p style={styles.bText}>{this.props.bText}</p>
+          </div>
+        </NavLink>
+      )
+  }
 }
 
 export default NavButton
