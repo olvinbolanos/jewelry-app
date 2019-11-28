@@ -14,12 +14,10 @@ import './App.css'
 import UserLogout from './UserLogout';
 
 const My404 = () => {
-  return (
-    <div>
-      You are lost Buddy
-    </div>
-  )
-} 
+  <>
+    You are lost Buddy
+  </>
+}
 
 class App extends Component {
   constructor() {
@@ -138,9 +136,7 @@ class App extends Component {
           ...userRoute.user,
           loading: false
 
-        })
-        console.log(userRoute.user, '<--- this is user in App')
-      
+        })      
     } catch (err) {
       console.log(err)
     }
@@ -169,13 +165,14 @@ class App extends Component {
               <Route exact path='/jewelry' render={(props) => <Jewelry {...props}  jewelry={this.jewelry} userInfo={this.state}/> } />
               <Route exact path='/jewelry/:_id' component={ShopItem} />
               <Route exact path='/cart' component={Cart} />
+              <Route exact path='/checkout' component={Checkout} />
+              <Route exact path='/payment' component={Payment} />
               <Route exact path='/shipping' component={ShippingForm} />
               <Route exact path='/logout' render={(props) => <UserLogout {...props} userInfo={this.state} updateUser={this.updateUser}/> } />
               <Route exact component={My404} />
             </Switch>
           </main>
         }
-        
       </main>
     )
   }

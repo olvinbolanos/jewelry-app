@@ -3,7 +3,7 @@ import Banner from '../Banner'
 import '../App.css'
 
 
-class  ClientContainer extends Component {
+class ClientContainer extends Component {
   constructor() {
     super();
       this.state = {

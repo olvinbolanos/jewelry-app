@@ -17,7 +17,6 @@ class CheckoutTotal extends Component {
     if(type === 'tax' || type === 'shipping') {
       rate = (type === 'tax' ? CheckoutTaxTable[this.state.stateUS] : CheckoutShippingTable[this.state.stateUS])
     } 
-
     rate = (rate ? rate : 0)
 
     return (Number((rate * this.props.subTotal).toFixed(2)))
