@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Cart from './Cart'
 import ShopItem from './ShopItem'
 import Header from './Header'
@@ -10,13 +10,15 @@ import ShippingForm from './ShippingForm'
 import ClientContainer from './ClientContainer'
 import Jewelry from './Jewelry'
 import Checkout from './Checkout'
-import './App.css'
 import UserLogout from './UserLogout';
+import './App.css'
 
 const My404 = () => {
-  <>
-    You are lost Buddy
-  </>
+  return(
+    <div>
+      <p>You are lost Buddy</p>
+    </div>
+  )
 }
 
 class App extends Component {
@@ -166,7 +168,7 @@ class App extends Component {
               <Route exact path='/jewelry/:_id' component={ShopItem} />
               <Route exact path='/cart' component={Cart} />
               <Route exact path='/checkout' component={Checkout} />
-              <Route exact path='/payment' component={Payment} />
+              {/* <Route exact path='/payment' component={Payment} /> */}
               <Route exact path='/shipping' component={ShippingForm} />
               <Route exact path='/logout' render={(props) => <UserLogout {...props} userInfo={this.state} updateUser={this.updateUser}/> } />
               <Route exact component={My404} />

@@ -12,7 +12,7 @@ class GalleryCol extends Component {
           artArr.map((elem, i) => {
             return ((i%3 === mod)?(
               <NavLink key={i} to={`/jewelry/${elem._id}`}>
-                <GalleryOneImg key={i} artInfo={elem} />
+                <GalleryOneImg key={i} jewelryInfo={elem} />
               </NavLink>
               ) : null)
           })}
@@ -20,6 +20,8 @@ class GalleryCol extends Component {
     )
   }
 }
+
+export default GalleryCol
 
 let styles = {
     layout1col: {
