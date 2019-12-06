@@ -148,7 +148,7 @@ class Checkout extends Component {
             description= {orderNumber}
             amount= {subTotal}
           /> */}
-          Hi
+          Hi {}
         </div>
       </div>
     </div>

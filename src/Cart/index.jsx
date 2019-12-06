@@ -84,7 +84,7 @@ class Cart extends Component {
     </div>
 
     <div style={Object.assign({}, Styles.checkoutContainer, visibility)}>
-      <NavButton path='/checkout' bText='Proceed to checkout' />
+      <NavButton url='/checkout' bText='Proceed to checkout' />
     </div>
     </div>
       )
