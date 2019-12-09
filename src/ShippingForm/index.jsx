@@ -10,7 +10,6 @@ class ShippingForm extends Component {
             firstName: '',
             lastName: '',
             address1: '',
-            address2: '',
             city: '',
             country: 'USA',
             state: '',
