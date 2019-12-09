@@ -32,7 +32,6 @@ class CartItem extends Component {
             <p><i className="trash icon"></i>Delete item  </p>
           </div>
         <div>
-        {/* <h3>{item.quantity * item.price}</h3> */}
         </div>
       </div>
     </div>
