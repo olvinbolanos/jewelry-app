@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Input, Button } from 'semantic-ui-react'
+import { Input, Button, Label } from 'semantic-ui-react'
 import  CheckoutStateUS from '../CheckoutStateUS' 
 
 
@@ -8,7 +8,6 @@ class CheckoutContactInfo extends Component {
       firstname: '',
       lastname: '',
       address1: '',
-      address2: '',
       city: '',
       stateUS: '',
       postal: '',
@@ -34,22 +33,23 @@ class CheckoutContactInfo extends Component {
       })
     }
 
-    valid_us_postcode = postcode => {
-      postcode = postcode.replace(/\s/g, '') // git rid of spaces
-      let isValidUSZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(postcode)
-      return isValidUSZip
+    valid_us_postcode = (postcode) => {
+      postcode = postcode.replace(/\s/g, ""); //get rid of spaces
+      let isValidUSZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(postcode);
+      return isValidUSZip;
     }
 
     render(){
       return(
         <div>
-        <form className="ui form App-form">
+        <form className="ui form App-form" onChange = {this.onChangeContact}>
         <h4 className="ui dividing header">Shipping Information</h4>
         <div className="field">
           <label>Name</label>
           <div className="two fields">
             <div className="field">
-              <input type="text" 
+              <input 
+              type="text" 
               name="firstName" 
               placeholder="First Name" 
               required
@@ -103,19 +103,57 @@ class CheckoutContactInfo extends Component {
         </div>
 
         <div className="field">
-          <label>Country</label>
-          <div className="ui fluid search selection dropdown">
-            <input type="hidden" name="country" />
-            <i className="dropdown icon"></i>
-            <div className="text">Select Country</div>
-          </div>
-        </div>
-      </div>   
-      <Button className="ui button" tabIndex="0">Submit Order</Button>
+          <label>Postal Code</label>
+          <input 
+            type="text" 
+            name="postal" 
+            required 
+            style={styles.input} 
+            placeholder = "Post Code"
+            />
+            {this.state.postal ? <p style = {styles.reqd_note}>(invalid zip)</p>
+            : <></> }
+        </div> 
+      </div> 
+
+      <div 
+        className="field"
+        style = {styles.contact}
+        onChange = { this.onChangeContact }
+      >
+      
+      <h3>Contact Info:
+        <span style = {styles.note}>(Needed for Delivery.)</span>
+      </h3>
+        
+      <label>Email</label>
+      <input 
+        type="email"
+        name="emailaddress"
+        required
+        style={styles.input}
+        placeholder= "Email"
+      />
+
+      <label>Phone</label>
+      <div className="fields">
+        <input 
+        type="number" 
+        name="phone"
+        style={ styles.input }
+        placeholder= 'Phone #'
+        required
+        minlength="4"
+        maxlength="9"
+        />
+      </div>
+    </div>
+
+    <Button className="ui button" tabIndex="0">Submit Order</Button>
   </form>  
 </div>
-      )
-    }
+    )
+  }
 }
 
 export default CheckoutContactInfo
