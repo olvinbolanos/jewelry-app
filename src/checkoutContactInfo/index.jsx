@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Input } from 'semantic-ui-react'
+import { Input, Button } from 'semantic-ui-react'
 import  CheckoutStateUS from '../CheckoutStateUS' 
 
 
@@ -78,6 +78,18 @@ class CheckoutContactInfo extends Component {
               />
             </div>
           </div>
+
+          <label>City</label>
+          <div className="fields">
+            <div className="twelve wide field">
+              <input 
+                type="text" 
+                name="city" 
+                placeholder="City" 
+                required
+              />
+            </div>
+          </div>
       </div>
 
       <div className="two fields">
@@ -89,16 +101,17 @@ class CheckoutContactInfo extends Component {
           : <p style={ styles.reqd_note }>(required)</p>
           }
         </div>
+
         <div className="field">
           <label>Country</label>
           <div className="ui fluid search selection dropdown">
-              <input type="hidden" name="country" />
-              <i className="dropdown icon"></i>
-              <div className="text">Select Country</div>
+            <input type="hidden" name="country" />
+            <i className="dropdown icon"></i>
+            <div className="text">Select Country</div>
           </div>
         </div>
       </div>   
-      <div className="ui button" tabIndex="0">Submit Order</div>
+      <Button className="ui button" tabIndex="0">Submit Order</Button>
   </form>  
 </div>
       )

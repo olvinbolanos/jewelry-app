@@ -66,7 +66,7 @@ export default class CheckoutStateUS extends Component {
 let styles = {
     input: {
         fontSize: 16,
-        height: 30
+        height: 40
     }
 }
 
