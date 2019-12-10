@@ -1,4 +1,7 @@
 import React, {Component} from 'react'
+import { Input } from 'semantic-ui-react'
+import  CheckoutStateUS from '../CheckoutStateUS' 
+
 
 class CheckoutContactInfo extends Component {
     state = {
@@ -39,11 +42,65 @@ class CheckoutContactInfo extends Component {
 
     render(){
       return(
-        <div style={styles.layout2col}>
-          <div style={styles.contact}>
-            <h3>shipping address: <span style={styles.note}>(USA only)</span></h3>
+        <div>
+        <form className="ui form App-form">
+        <h4 className="ui dividing header">Shipping Information</h4>
+        <div className="field">
+          <label>Name</label>
+          <div className="two fields">
+            <div className="field">
+              <input type="text" 
+              name="firstName" 
+              placeholder="First Name" 
+              required
+              />
+            </div>
+
+            <div className="field">
+              <input type="text" 
+                name="lastName" 
+                placeholder="Last Name"
+                required 
+              />
+            </div>
           </div>
         </div>
+
+        <div className="field">
+          <label>Billing Address</label>
+          <div className="fields">
+            <div className="twelve wide field">
+              <input 
+                type="text" 
+                name="address1" 
+                placeholder="Street Address" 
+                required
+              />
+            </div>
+          </div>
+      </div>
+
+      <div className="two fields">
+        <div className="field">
+          <label>StateUS</label> 
+          <CheckoutStateUS getStateUS = {this.getStateUS} />
+          {this.state.stateUS ? 
+          <p></p> 
+          : <p style={ styles.reqd_note }>(required)</p>
+          }
+        </div>
+        <div className="field">
+          <label>Country</label>
+          <div className="ui fluid search selection dropdown">
+              <input type="hidden" name="country" />
+              <i className="dropdown icon"></i>
+              <div className="text">Select Country</div>
+          </div>
+        </div>
+      </div>   
+      <div className="ui button" tabIndex="0">Submit Order</div>
+  </form>  
+</div>
       )
     }
 }

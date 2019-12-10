@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Input } from 'semantic-ui-react'
+
 import '../App.css'
 
 class ShippingForm extends Component {
@@ -15,13 +16,13 @@ class ShippingForm extends Component {
             state: '',
             postal: '',
             phone: '',
-            
+            emailaddress: '',
            
             
-            tax: 0,
-            shipping: 0,
-            totalAmount: 0,
-            orderItems: []
+            // tax: 0,
+            // shipping: 0,
+            // totalAmount: 0,
+            // orderItems: []
         }
     }
 
@@ -37,29 +38,9 @@ class ShippingForm extends Component {
     }
     
 
-    _getInputData = (data) => {
-        this.setState(data);
-    }
+    
 
-    getContactInfo = (
-      firstName, 
-      lastName, 
-      address1, 
-      address2, 
-      city, 
-      state, 
-      postal, 
-      ) => {
-        this.setState({ 
-            firstName: firstName,
-            lastName: lastName,
-            address1: address1,
-            address2: address2,
-            city: city,
-            state: state,
-            postal: postal,
-        })
-    }
+    
 
     render() {
       console.log(this.state, this.props.userInfo, 'in ShowPage < props');
