@@ -18,9 +18,17 @@ class CheckoutContactInfo extends Component {
     }
 
     onChangeContact = (e) => {
+      e.preventDefault()
+
+      const validationFailed = false;
+
       this.props._getInputData({
-          [e.target.name]: e.target.value //send to parent
+        [e.target.name]: e.target.value //send to parent
       })
+      this.setState({
+        [e.target.name] : e.target.value
+      })
+
     }
 
     getStateUS = (stateUS) => {
@@ -35,7 +43,7 @@ class CheckoutContactInfo extends Component {
 
     valid_us_postcode = (postcode) => {
       postcode = postcode.replace(/\s/g, ""); //get rid of spaces
-      let isValidUSZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(postcode);
+      let isValidUSZip = /^([0-9]{5})(?:[-\s]*([0-9]{4}))?$/.test(postcode);
       return isValidUSZip;
     }
 
@@ -110,9 +118,13 @@ class CheckoutContactInfo extends Component {
             required 
             style={styles.input} 
             placeholder = "Post Code"
+            min="5"
+            max="9"
             />
-            {this.state.postal ? <p style = {styles.reqd_note}>(invalid zip)</p>
-            : <></> }
+            {this.valid_us_postcode(this.state.postal) ?
+            <></> 
+            : <p style = {styles.reqd_note}>(invalid zip)</p>
+            }
         </div> 
       </div> 
 
