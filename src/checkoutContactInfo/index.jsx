@@ -50,7 +50,8 @@ class CheckoutContactInfo extends Component {
     render(){
       return(
         <div>
-        <form className="ui form App-form" onChange = {this.onChangeContact}>
+        <form className="ui form App-form" 
+        onChange = {this.onChangeContact}>
         <h4 className="ui dividing header">Shipping Information</h4>
         <div className="field">
           <label>Name</label>
@@ -62,6 +63,11 @@ class CheckoutContactInfo extends Component {
               placeholder="First Name" 
               required
               />
+              {this.state.firstName ? 
+              <></> 
+              : <p style = {styles.reqd_note}>(required)</p>
+              }
+
             </div>
 
             <div className="field">
@@ -70,6 +76,10 @@ class CheckoutContactInfo extends Component {
                 placeholder="Last Name"
                 required 
               />
+              {this.state.lastName ? 
+              <></> 
+              : <p style = {styles.reqd_note}>(required)</p>
+              }
             </div>
           </div>
         </div>
@@ -84,6 +94,10 @@ class CheckoutContactInfo extends Component {
                 placeholder="Street Address" 
                 required
               />
+          {this.state.address1 ? 
+          <></> 
+          : <p style = {styles.reqd_note}>(required)</p>
+          }
             </div>
           </div>
 
@@ -96,6 +110,10 @@ class CheckoutContactInfo extends Component {
                 placeholder="City" 
                 required
               />
+              {this.state.city ? 
+              <></> 
+              : <p style = {styles.reqd_note}>(required)</p>
+              }
             </div>
           </div>
       </div>
@@ -118,8 +136,6 @@ class CheckoutContactInfo extends Component {
             required 
             style={styles.input} 
             placeholder = "Post Code"
-            min="5"
-            max="9"
             />
             {this.valid_us_postcode(this.state.postal) ?
             <></> 
@@ -150,13 +166,11 @@ class CheckoutContactInfo extends Component {
       <label>Phone</label>
       <div className="fields">
         <input 
-        type="number" 
+        type="text" 
         name="phone"
         style={ styles.input }
         placeholder= 'Phone #'
         required
-        minlength="4"
-        maxlength="9"
         />
       </div>
     </div>

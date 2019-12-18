@@ -31,35 +31,6 @@ class ClientContainer extends Component {
       }
   }
 
-  sortJewelryWorks = (userArray) => {
-    let sortedArr = [];
-    let newIdx = 0
-    userArray.map((elem,i)=> {  //place all sorted elems first into array
-      if (elem.sortId && !(isNaN(elem.sortId))) {   //if sortId is a number
-        //copy the elem to index of sortId
-          newIdx = elem.sortId - 1    //(sortId starts at #1)
-        while (sortedArr[newIdx]) {  //while there is something here, go on -make sure nothing already in this slot
-            newIdx ++;
-        }
-        sortedArr[newIdx]= JSON.parse(JSON.stringify(elem))
-      }
-    })
-    newIdx = 0;    //reset idx
-    userArray.map((elem,i)=> { //test if elem is null, if so, stick in the element
-      if (!(elem.sortId)) {
-        while (sortedArr[newIdx]) {  //find next open slot
-          newIdx ++;
-        }
-        sortedArr[newIdx]= JSON.parse(JSON.stringify(elem))    //write the elem
-      }
-    })   
-    // sortedArr.map((elem, i)=>{console.log(elem.sortId,elem.name)})
-    return (sortedArr) 
-  }
-
-
-  
-
   render() {
       const { users } = this.state
       return (
