@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import GalleryOneImg from './GalleryOneImg'
-import { NavLink } from './react-router-dom'
+import GalleryOneImg from '../GalleryOneImg'
+import { NavLink } from 'react-router-dom'
 
 class GalleryCol extends Component {
   render() {
-    const { artArr, mod } = this.props
+    const { artArr} = this.props
 
     return (
-      <div style = {styles.layout1col} >
+      <div>
         {
           artArr.map((elem, i) => {
             return ((i%3 === mod)?(

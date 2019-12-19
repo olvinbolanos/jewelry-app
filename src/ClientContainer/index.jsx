@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import Banner from '../Banner'
+import GalleryOneImg from '../GalleryOneImg'
+import GalleryCol from  '../GalleryCol'
+import { NavLink } from 'react-router-dom'
 import '../App.css'
 
 
@@ -51,6 +54,7 @@ class ClientContainer extends Component {
                                   style={{visibility: "visible !important", 
                                   display: "flex !important"}}>
                                   Add to Shopping Cart<i className="shopping cart icon"></i>
+                                  {console.log(`/jewelry/${user.id}`)}
                                 </div>
                               </div>
                             </div>
@@ -73,10 +77,10 @@ class ClientContainer extends Component {
                         </div>
 
                         <div className="extra content">
-                          <a href="#">
+                        <NavLink key={i} to={`/jewelry/${user.id}`} > 
                           Add to Shopping Cart
                           <i className="shopping cart icon"></i>
-                          </a>
+                        </NavLink>
                           <div className="extra content">
                             <a href="#">
                             <i>${user.price}</i>

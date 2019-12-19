@@ -7,7 +7,10 @@ class NavButton extends Component {
       let navStyle = Object.assign(styles.navLink, (width ? { width: width } : '')) //override width
 
       return (
-        <NavLink to={this.props.url} style={navStyle} history={this.props.history} >
+        <NavLink to={this.props.url} 
+        style={navStyle} 
+        history={this.props.history} 
+        >
           <div style={styles.navButton}>
              <p style={styles.bText}>{this.props.bText}</p>
           </div>

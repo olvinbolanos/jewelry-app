@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 import Cart from './Cart'
 import ShopItem from './ShopItem'
+import GalleryCol from './GalleryCol'
 import Header from './Header'
 import Login from './Login'
 import Profile from './Profile'
@@ -165,7 +166,7 @@ class App extends Component {
               <Route exact path='/profile' render={(props) => <Profile {...props} userInfo={this.state} /> } />
               <Route exact path='/clientContainer' render={(props) => <ClientContainer {...props} userInfo={this.state} /> } /> 
               <Route exact path='/jewelry' render={(props) => <Jewelry {...props}  jewelry={this.jewelry} userInfo={this.state}/> } />
-              <Route exact path='/jewelry/:_id' component={ShopItem} />
+              <Route exact path='/jewelry/:id' component={GalleryCol} />
               <Route exact path='/cart' component={Cart} />
               <Route exact path='/checkout' component={Checkout} />
               {/* <Route exact path='/payment' component={Payment} /> */}
