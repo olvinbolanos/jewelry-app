@@ -53,8 +53,7 @@ class ClientContainer extends Component {
                                 <div className="ui button visible" 
                                   style={{visibility: "visible !important", 
                                   display: "flex !important"}}>
-                                  Add to Shopping Cart<i className="shopping cart icon"></i>
-                                  {console.log(`/jewelry/${user.id}`)}
+                                  <NavLink key={i} to={`/jewelry/${user.id}`}><GalleryOneImg key={i} jewelryInfo={user} /> Add to Shopping Cart<i className="shopping cart icon"></i></NavLink>
                                 </div>
                               </div>
                             </div>

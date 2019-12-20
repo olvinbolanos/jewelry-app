@@ -8,14 +8,19 @@ class GalleryCol extends Component {
 
     return (
       <div>
-        {
+        {/* {
           artArr.map((elem, i) => {
-            return ((i%3 === mod)?(
-              <NavLink key={i} to={`/jewelry/${elem._id}`}>
-                <GalleryOneImg key={i} jewelryInfo={elem} />
-              </NavLink>
-              ) : null)
-          })}
+            // return (
+            //   (
+            //     <NavLink key={i} to={`/jewelry/${elem._id}`}>
+            //       <GalleryOneImg key={i} jewelryInfo={elem} />
+            //     </NavLink>
+            //   )
+            // )
+            console.log(elem)
+          })
+        } */}
+        hi
       </div>
     )
   }

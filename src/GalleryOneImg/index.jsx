@@ -1,15 +1,43 @@
 import React, {Component} from 'react'
 
 class GalleryOneImg extends Component {
+  constructor(props) {
+    super(props)
+      this.state = {
+        images: [],
+        errorState: null,
+        loading: false
+      
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.reviewScript !== prevProps.reviewScript) {
+      this.setState({
+        images: [],
+      }, () => this.getImagesFromApi(this.props.reviewImages))
+    }
+  }
+
+  componentDidMount() {
+    this.getImagesFromApi()
+    console.log(`component mounted! 1`)
+  }
+
+  getImagesFromApi = () => {
+    const reviewId = this.props.match.params.id
+    console.log('inside getImagesMod', reviewId)
+  }
+
   render() {
     const { jewelryInfo } = this.props
 
-    if (jewelryInfo) {
+    if ( jewelryInfo ) {
       return (
-        <div style={styles.imgContainer}>
-          <img style={styles.jewelryImg} 
-            src={jewelryInfo} 
-            alt={jewelryInfo.owner} />
+        <div style= { styles.imgContainer }>
+          <img style= {styles.jewelryImg} 
+            src= {jewelryInfo} 
+            alt= {jewelryInfo.owner} />
         </div>
       ) 
     } else return null
