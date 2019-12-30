@@ -8,10 +8,11 @@ class GalleryCol extends Component {
 
     return (
       <div>
-        <NavLink to={`/jewelry/${jewelryArr.id}`} >
-          <GalleryOneImg jewelryInf={jewelryArr.id} />
+         <NavLink to={`/jewelry/${jewelryArr}`} >
+           <GalleryOneImg jewelryInf={jewelryArr} />
         </NavLink>
       </div>
+      
     )
   }
 }
