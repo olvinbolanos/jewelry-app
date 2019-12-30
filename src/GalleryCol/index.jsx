@@ -4,23 +4,13 @@ import { NavLink } from 'react-router-dom'
 
 class GalleryCol extends Component {
   render() {
-    const { artArr} = this.props
+    const { jewelryArr } = this.props
 
     return (
       <div>
-        {/* {
-          artArr.map((elem, i) => {
-            // return (
-            //   (
-            //     <NavLink key={i} to={`/jewelry/${elem._id}`}>
-            //       <GalleryOneImg key={i} jewelryInfo={elem} />
-            //     </NavLink>
-            //   )
-            // )
-            console.log(elem)
-          })
-        } */}
-        hi
+        <NavLink to={`/jewelry/${jewelryArr.id}`} >
+          <GalleryOneImg jewelryInf={jewelryArr.id} />
+        </NavLink>
       </div>
     )
   }

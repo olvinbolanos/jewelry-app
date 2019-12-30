@@ -15,16 +15,16 @@ class GalleryOneImg extends Component {
     if(this.props.reviewScript !== prevProps.reviewScript) {
       this.setState({
         images: [],
-      }, () => this.getImagesFromApi(this.props.reviewImages))
+      }, () => this.getImagesFromApi(this.props.reviewScript))
     }
   }
 
   componentDidMount() {
-    this.getImagesFromApi()
+    // this.getImagesFromApi()
     console.log(`component mounted! 1`)
   }
 
-  getImagesFromApi = () => {
+  getImagesFromApi = (id) => {
     const reviewId = this.props.match.params.id
     console.log('inside getImagesMod', reviewId)
   }
@@ -35,7 +35,7 @@ class GalleryOneImg extends Component {
     if ( jewelryInfo ) {
       return (
         <div style= { styles.imgContainer }>
-          <img style= {styles.jewelryImg} 
+          <img style= { styles.jewelryImg } 
             src= {jewelryInfo} 
             alt= {jewelryInfo.owner} />
         </div>

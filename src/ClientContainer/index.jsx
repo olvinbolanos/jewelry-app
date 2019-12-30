@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Banner from '../Banner'
-import GalleryOneImg from '../GalleryOneImg'
 import GalleryCol from  '../GalleryCol'
 import { NavLink } from 'react-router-dom'
 import '../App.css'
@@ -38,13 +37,13 @@ class ClientContainer extends Component {
       const { users } = this.state
       return (
           <div>
-              <Banner />
+            <Banner />
               <div className="App-flex-cards">
               { 
                 users.map((user, i) => { 
                   return (
                     <div key={i}>
-                      <div className="ui special cards">
+                    <div className="ui special cards">
                       <div className="card">
                         <div className="blurring dimmable image">
                           <div className="ui dimmer">
@@ -53,7 +52,11 @@ class ClientContainer extends Component {
                                 <div className="ui button visible" 
                                   style={{visibility: "visible !important", 
                                   display: "flex !important"}}>
-                                  <NavLink key={i} to={`/jewelry/${user.id}`}><GalleryOneImg key={i} jewelryInfo={user} /> Add to Shopping Cart<i className="shopping cart icon"></i></NavLink>
+                                  <GalleryCol mod = {i} jewelryArr = {user} > 
+                                    Add to Shopping Cart
+                                    <i className="shopping cart icon">
+                                    </i>
+                                  </GalleryCol>
                                 </div>
                               </div>
                             </div>
